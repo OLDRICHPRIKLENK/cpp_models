@@ -1,0 +1,145 @@
+Start testing: Sep 17 17:05 CEST
+----------------------------------------------------------
+1/6 Testing: test_config
+1/6 Test: test_config
+Command: "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/test_config"
+Directory: /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp
+"test_config" start time: Sep 17 17:05 CEST
+Output:
+----------------------------------------------------------
+[TEST] Loading config.toml...
+[PASS] Valid config loaded successfully.
+[TEST] Testing invalid config handling...
+  Caught expected exception: ConfigParser: Configuration file not found at non_existent_file.toml
+  Caught expected exception: Invalid geometry: r0 must be positive.
+[PASS] Error handling verified.
+=== ALL CONFIG TESTS PASSED ===
+<end of output>
+Test time =   0.22 sec
+----------------------------------------------------------
+Test Passed.
+"test_config" end time: Sep 17 17:05 CEST
+"test_config" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/6 Testing: test_mesher
+2/6 Test: test_mesher
+Command: "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/test_mesher"
+Directory: /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp
+"test_mesher" start time: Sep 17 17:05 CEST
+Output:
+----------------------------------------------------------
+[TEST] Running Mesher with config.toml...
+[Mesher] Generated 3D mesh: 968 vertices, 3987 tetrahedra -> data/meshes/test_trap.msh
+[PASS] Mesher successfully created mesh with 968 vertices and 3987 elements.
+[TEST] Verifying MFEM compatibility of generated mesh...
+[PASS] MFEM loaded mesh with all 6 boundary attributes verified.
+[TEST] Testing Mesher invalid parameter checks...
+  Caught expected exception: Mesher: Geometric dimensions r0 and z0 must be positive.
+[PASS] Mesher parameter validation verified.
+=== ALL MESHER TESTS PASSED ===
+<end of output>
+Test time =   0.15 sec
+----------------------------------------------------------
+Test Passed.
+"test_mesher" end time: Sep 17 17:05 CEST
+"test_mesher" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/6 Testing: test_analytical
+3/6 Test: test_analytical
+Command: "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/test_analytical"
+Directory: /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp
+"test_analytical" start time: Sep 17 17:05 CEST
+Output:
+----------------------------------------------------------
+[TEST] Verifying Laplace condition div(grad(V)) == 0...
+[PASS] Laplace equation satisfied everywhere (Laplacian == 0).
+[TEST] Verifying E == -grad(V)...
+[PASS] Electric field matches -grad(V) finite difference gradient.
+[TEST] Verifying batch evaluation consistency...
+[PASS] Batch evaluations match single-point evaluations exactly.
+=== ALL ANALYTICAL TESTS PASSED ===
+<end of output>
+Test time =   0.11 sec
+----------------------------------------------------------
+Test Passed.
+"test_analytical" end time: Sep 17 17:05 CEST
+"test_analytical" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/6 Testing: test_fem
+4/6 Test: test_fem
+Command: "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/test_fem"
+Directory: /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp
+"test_fem" start time: Sep 17 17:05 CEST
+Output:
+----------------------------------------------------------
+[TEST] Setting up mesh and running FEM Laplace solver...
+[Mesher] Generated 3D mesh: 968 vertices, 3987 tetrahedra -> data/meshes/test_fem_trap.msh
+[FemSolver] Mesh loaded: 966 vertices, 3987 elements, 966 H1 DOFs.
+[FemSolver] Successfully solved all 6 basis Laplace fields.
+[PASS] All 6 basis fields satisfy maximum principle (0 <= phi <= 1).
+[TEST] Testing partition of unity (all electrodes at 1.0V)...
+  Unity field min: 1, max: 1
+[PASS] Partition of unity verified: sum(phi_k) == 1.0 everywhere.
+[TEST] Extracting nodal data to dense Eigen structures...
+[PASS] Extracted 966 nodal data points successfully.
+[TEST] Testing VTK export...
+[FemSolver] Exported FEM solution to output/vtk/test_fem_solution.vtu
+[PASS] VTK file successfully generated.
+=== ALL FEM SOLVER TESTS PASSED ===
+<end of output>
+Test time =   0.17 sec
+----------------------------------------------------------
+Test Passed.
+"test_fem" end time: Sep 17 17:05 CEST
+"test_fem" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/6 Testing: test_interpolation
+5/6 Test: test_interpolation
+Command: "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/test_interpolation"
+Directory: /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp
+"test_interpolation" start time: Sep 17 17:05 CEST
+Output:
+----------------------------------------------------------
+[TEST] Testing RegularGrid...
+[PASS] RegularGrid creation and coordinates verified.
+[TEST] Testing PolynomialInterpolator fitting known quadratic field...
+[PASS] PolynomialInterpolator correctly fits and computes electric fields.
+[TEST] Testing RbfInterpolator with ALGLIB and nanoflann...
+[RbfInterpolator] Successfully fitted RBF model with 64 points (r_base = 0.00125, smoothing = 1e-05, iterations = 67)
+[PASS] RbfInterpolator successfully evaluated and tested.
+=== ALL INTERPOLATION TESTS PASSED ===
+<end of output>
+Test time =   0.13 sec
+----------------------------------------------------------
+Test Passed.
+"test_interpolation" end time: Sep 17 17:05 CEST
+"test_interpolation" time elapsed: 00:00:00
+----------------------------------------------------------
+
+6/6 Testing: test_validation
+6/6 Test: test_validation
+Command: "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/test_validation"
+Directory: /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp
+"test_validation" start time: Sep 17 17:05 CEST
+Output:
+----------------------------------------------------------
+[TEST] Testing FieldValidator error norms calculation...
+[PASS] Metric calculations and error norms verified.
+[TEST] Testing standalone VTK exports for residual and analytical fields...
+[Validation] Exported residual map to output/vtk/test_residual_error.vtu
+[Validation] Exported ideal analytical field to output/vtk/test_analytical_field.vtu
+[PASS] Standalone VTK export verified.
+=== ALL VALIDATION TESTS PASSED ===
+<end of output>
+Test time =   0.11 sec
+----------------------------------------------------------
+Test Passed.
+"test_validation" end time: Sep 17 17:05 CEST
+"test_validation" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Sep 17 17:05 CEST

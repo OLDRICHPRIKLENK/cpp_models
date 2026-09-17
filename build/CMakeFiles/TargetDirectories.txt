@@ -1,0 +1,12 @@
+/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/CMakeFiles/alglib.dir
+/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/CMakeFiles/paul_trap_lib.dir
+/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/CMakeFiles/paul_trap_sim.dir
+/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/CMakeFiles/test_config.dir
+/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/CMakeFiles/test_mesher.dir
+/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/CMakeFiles/test_analytical.dir
+/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/CMakeFiles/test_fem.dir
+/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/CMakeFiles/test_interpolation.dir
+/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/CMakeFiles/test_validation.dir
+/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/CMakeFiles/test.dir
+/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/CMakeFiles/edit_cache.dir
+/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/CMakeFiles/rebuild_cache.dir

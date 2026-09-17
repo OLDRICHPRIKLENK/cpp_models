@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-subbuild/CMakeFiles/alglib-populate"
+		},
+		{
+			"file" : "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-subbuild/CMakeFiles/alglib-populate.rule"
+		},
+		{
+			"file" : "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-subbuild/CMakeFiles/alglib-populate-complete.rule"
+		},
+		{
+			"file" : "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-subbuild/alglib-populate-prefix/src/alglib-populate-stamp/alglib-populate-build.rule"
+		},
+		{
+			"file" : "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-subbuild/alglib-populate-prefix/src/alglib-populate-stamp/alglib-populate-configure.rule"
+		},
+		{
+			"file" : "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-subbuild/alglib-populate-prefix/src/alglib-populate-stamp/alglib-populate-download.rule"
+		},
+		{
+			"file" : "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-subbuild/alglib-populate-prefix/src/alglib-populate-stamp/alglib-populate-install.rule"
+		},
+		{
+			"file" : "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-subbuild/alglib-populate-prefix/src/alglib-populate-stamp/alglib-populate-mkdir.rule"
+		},
+		{
+			"file" : "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-subbuild/alglib-populate-prefix/src/alglib-populate-stamp/alglib-populate-patch.rule"
+		},
+		{
+			"file" : "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-subbuild/alglib-populate-prefix/src/alglib-populate-stamp/alglib-populate-test.rule"
+		},
+		{
+			"file" : "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-subbuild/alglib-populate-prefix/src/alglib-populate-stamp/alglib-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"alglib-populate"
+		],
+		"name" : "alglib-populate"
+	}
+}

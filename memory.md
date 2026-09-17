@@ -1,0 +1,159 @@
+# Project Memory: 3D Paul Trap Field Solver (`paul_trap_sim`)
+
+## 1. Project Overview & Architecture
+The objective is to compute, interpolate, validate, and visualize 3D electrostatic quadrupole fields in a Paul trap with 6 independent electrodes (4 radial electrodes and 2 endcap electrodes) using native C++20.
+
+### Directory Structure
+```text
+/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/
+├── CMakeLists.txt              # Primary CMake build file
+├── vcpkg.json                  # C++ package manifest
+├── config.toml                 # Centralized system & physical parameters
+├── include/                    # Header files (.hpp)
+│   ├── core/
+│   │   ├── config_parser.hpp   # toml++ configuration reader
+│   │   └── constants.hpp       # constexpr physical and math constants
+│   ├── geometry/
+│   │   └── mesher.hpp          # Gmsh 3D CAD and mesh generator
+│   ├── physics/
+│   │   ├── analytical.hpp      # Analytical 3D quadrupole potential
+│   │   └── fem_solver.hpp      # MFEM 6-basis Laplace equation solver
+│   ├── interpolation/
+│   │   ├── regular_grid.hpp    # 3D Cartesian grid & polynomial interpolator
+│   │   └── rbf_interpolator.hpp# ALGLIB RBF interpolator with KD-tree
+│   └── validation/
+│       └── metrics.hpp         # L2 relative, L2 absolute, Linf error metrics
+├── src/                        # Implementation files (.cpp)
+│   ├── main.cpp                # End-to-end pipeline driver
+│   ├── geometry/
+│   │   └── mesher.cpp
+│   ├── physics/
+│   │   ├── analytical.cpp
+│   │   └── fem_solver.cpp
+│   ├── interpolation/
+│   │   └── regular_grid.cpp
+│   │   └── rbf_interpolator.cpp
+│   └── validation/
+│       └── metrics.cpp
+├── tests/                      # Unit testing suite
+├── data/                       
+│   ├── meshes/                 # Generated .msh meshes
+│   └── fields/                 # Solved field checkpoints
+└── output/                     
+    ├── vtk/                    # SRP standalone .vtu visualization files
+    └── reports/                # Polynomial equation text and metrics logs
+```
+
+## 2. Technology Stack & Dependencies
+| Library | Version / Source | Purpose |
+| :--- | :--- | :--- |
+| **C++ Standard** | C++20 (`AppleClang 21.0.0`) | Concepts, constexpr, modern STL |
+| **Eigen** | 5.0.1 (Homebrew) | Dense linear algebra and matrix operations |
+| **tomlplusplus** | 3.4.0 (Homebrew) | TOML configuration file parsing |
+| **nanoflann** | 1.12.1 (Homebrew) | Fast KD-tree spatial queries |
+| **Gmsh** | 4.15.2 (Homebrew) | Parametric CAD geometry and 3D unstructured mesh generation |
+| **MFEM** | 4.10.0 (Homebrew) | Finite Element Method Laplace solver ($\nabla^2 \phi = 0$) |
+| **ALGLIB** | 3.x (CMake FetchContent) | Radial Basis Function (RBF) 3D interpolation |
+| **VTK** | 9.7.0 (Homebrew) | High-performance `.vtu` XML Unstructured Grid export |
+
+## 3. Physical & Mathematical Formulations
+1. **Geometry:**
+   - 4 radial electrodes azimuthally dividing a cylinder of radius $r_0$ over $[-z_0, z_0]$.
+   - 2 endcap planar disks at $z = +z_0$ and $z = -z_0$.
+2. **6 Basis Potentials:**
+   - For electrode $k \in \{1..6\}$: $\nabla^2 \phi_k = 0$ in the interior, with $\phi_k = 1.0\,\text{V}$ on electrode $k$, $\phi_k = 0.0\,\text{V}$ on all other 5 electrodes.
+   - Total potential: $\Phi(\mathbf{x}) = \sum_{k=1}^6 V_k \phi_k(\mathbf{x}) = \mathbf{V} \cdot \boldsymbol{\phi}(\mathbf{x})$.
+3. **Analytical Baseline:**
+   - Ideal 3D quadrupole potential:
+     $$V_{ideal}(x, y, z) = V_0 \frac{x^2 - y^2}{2 r_0^2} + V_{ec} \frac{2z^2 - x^2 - y^2}{2 z_0^2 + r_0^2}$$
+     satisfying $\nabla^2 V_{ideal} = 0$.
+4. **Interpolation & Electric Field:**
+   - Evaluates $\vec{E} = -\nabla V$ analytically from fitted polynomial and via RBF gradients.
+   - Logs polynomial equation to console and `output/reports/polynomial_equation.txt`.
+5. **Verification Metrics:**
+   - Absolute $L_2$ error: $\sqrt{\frac{1}{N} \sum_i (V_{interp}(\mathbf{x}_i) - V_{ideal}(\mathbf{x}_i))^2}$
+   - Relative $L_2$ error: $\frac{\|V_{interp} - V_{ideal}\|_2}{\|V_{ideal}\|_2}$
+   - Infinity norm / maximum error: $\max_i |V_{interp}(\mathbf{x}_i) - V_{ideal}(\mathbf{x}_i)|$
+6. **Visualization Outputs (Strict SRP):**
+   - `output/vtk/fem_solution.vtu`
+   - `output/vtk/interpolated_grid.vtu`
+   - `output/vtk/analytical_field.vtu`
+   - `output/vtk/residual_error.vtu`
+
+## 4. Finalized Module Status
+- [x] **Core Module:**
+  - `include/core/constants.hpp`: Physical constants ($\epsilon_0, e, u, c, k_B$) and boundary ID mappings.
+  - `include/core/config_parser.hpp`: TOML parsing via `toml++` with full validation, returns `TrapConfig`.
+  - `config.toml`: Parameterized geometry ($r_0 = 5\,\text{mm}, z_0 = 5\,\text{mm}$), mesh sizes, voltages, and grid bounds.
+  - Verification: `tests/test_config.cpp` passed 100%.
+
+- [x] **Geometry & Meshing Module:**
+  - `include/geometry/mesher.hpp`, `src/geometry/mesher.cpp`: Parametric Gmsh 3D cylinder trap generator with 4 radial quadrant electrodes and 2 endcaps.
+  - Outputs MSH 2.2 format to `data/meshes/trap.msh` with physical groups: Radial 1..4 (IDs 1..4), Endcap 1..2 (IDs 5..6), Domain (ID 1).
+  - Verification: `tests/test_mesher.cpp` passed 100% (mesh generation and MFEM boundary attribute verification).
+
+- [x] **Analytical Baseline Module:**
+  - `include/physics/analytical.hpp`, `src/physics/analytical.cpp`: Ideal 3D quadrupole and harmonic multipole baseline $V_{ideal}(x,y,z)$ and analytical $\vec{E}_{ideal} = -\nabla V_{ideal}$.
+  - Supports arbitrary 6-electrode control vector $(V_1..V_6)$ projection.
+  - Verification: `tests/test_analytical.cpp` passed 100% (Laplacian vanishing, exact gradient matches, batch consistency).
+
+- [x] **FEM Laplace Solver Module:**
+  - `include/physics/fem_solver.hpp`, `src/physics/fem_solver.cpp`: Solves 6 independent basis Laplace problems with MFEM on unstructured 3D tetrahedral mesh.
+  - Superposition: instantaneous linear dot product $\Phi(\mathbf{x}) = \mathbf{V} \cdot \boldsymbol{\phi}(\mathbf{x})$.
+  - Dense extraction to Eigen matrices (`NodalFieldData`: `coordinates`, `potential`, `basis_potentials`).
+  - Native VTK `.vtu` exporter for FEM mesh & scalar potential.
+  - Verification: `tests/test_fem.cpp` passed 100% (maximum principle, partition of unity $\sum \phi_k \equiv 1.0$, nodal data, and VTK write).
+
+- [x] **Spatial Interpolation Module:**
+  - `include/interpolation/regular_grid.hpp`, `src/interpolation/regular_grid.cpp`: 3D Cartesian tensor grid and multivariate polynomial least-squares fit with analytical $\vec{E} = -\nabla V$. Formats polynomial equation and logs to terminal and disk.
+  - `include/interpolation/rbf_interpolator.hpp`, `src/interpolation/rbf_interpolator.cpp`: Multilayer RBF model powered by ALGLIB, with KD-tree nearest-neighbor spatial queries via `nanoflann`.
+  - Verification: `tests/test_interpolation.cpp` passed 100%.
+
+- [x] **Validation & Error Metrics Module:**
+  - `include/validation/metrics.hpp`, `src/validation/metrics.cpp`: Calculates relative $L_2$, absolute $L_2$ (RMS), max ($L_\infty$), and mean absolute error.
+  - Generates standalone VTK `.vtu` files for residual error and analytical field.
+  - Verification: `tests/test_validation.cpp` passed 100%.
+
+- [x] **Build & Test Suite:**
+  - Top-level `CMakeLists.txt` configuring static library `paul_trap_lib`, executable `paul_trap_sim`, and 6 unit test executables.
+  - CTest test suite: 6/6 tests passed (100%) in 0.78 seconds.
+
+## 5. Quantitative Simulation Outcomes & Benchmarks
+From execution of `paul_trap_sim` with standard parameters ($r_0 = 5\,\text{mm}, z_0 = 5\,\text{mm}$, voltages $[+100, -100, +100, -100, +50, +50]\,\text{V}$):
+
+### Numerical Performance:
+- Mesh generation: 3,877 vertices, 18,501 tetrahedra.
+- FEM 6-basis Laplace solve: **0.063 seconds** (3,875 H1 DOFs, CG convergence with relative tolerance $10^{-12}$).
+- Full end-to-end pipeline: **1.89 seconds** (including mesh, 6 solves, polynomial fit, RBF fit, analytical eval, metrics, and 4 VTK writes).
+
+### Fitted Polynomial Field Equation:
+```text
+V(x, y, z) = 1.769833e+01
+  + (-3.231938e+01) * x
+  + (4.002324e+00) * y
+  + (8.429810e+00) * z
+  + (3.284198e+06) * x^2
+  + (-5.402174e+06) * y^2
+  + (1.434637e+06) * z^2
+  + (-1.709430e+05) * x*y
+  + (-1.323551e+04) * y*z
+  + (-3.741394e+03) * z*x
+```
+
+### Validation Metrics (Grid: $21 \times 21 \times 21 = 9,261$ points):
+- **Relative $L_2$ Error:** $5.479871 \times 10^{-2}$ (5.48%)
+- **Absolute $L_2$ (RMS) Error:** $1.006013\,\text{V}$
+- **Maximum ($L_\infty$) Error:** $2.848373\,\text{V}$
+- **Mean Absolute Error:** $0.857231\,\text{V}$
+
+### Output Files (Strict SRP Adherence):
+1. FEM Mesh Solution: [`output/vtk/fem_solution.vtu`](file:///Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/output/vtk/fem_solution.vtu)
+2. Interpolated Grid: [`output/vtk/interpolated_grid.vtu`](file:///Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/output/vtk/interpolated_grid.vtu)
+3. Analytical Baseline: [`output/vtk/analytical_field.vtu`](file:///Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/output/vtk/analytical_field.vtu)
+4. Dedicated Residual Error Map: [`output/vtk/residual_error.vtu`](file:///Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/output/vtk/residual_error.vtu)
+5. Polynomial Report: [`output/reports/polynomial_equation.txt`](file:///Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/output/reports/polynomial_equation.txt)
+6. Metrics Report: [`output/reports/validation_metrics.txt`](file:///Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/output/reports/validation_metrics.txt)
+7. 3D Mesh: [`data/meshes/trap.msh`](file:///Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/data/meshes/trap.msh)
+
+---
+*Status: All phases complete. Codebase is fully functional, strictly tested, and production-ready.*

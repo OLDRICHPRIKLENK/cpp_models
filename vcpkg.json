@@ -1,0 +1,14 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+  "name": "paul-trap-sim",
+  "version-string": "1.0.0",
+  "description": "Native C++ 3D Paul trap field solver with Gmsh, MFEM, ALGLIB, and VTK.",
+  "dependencies": [
+    "eigen3",
+    "tomlplusplus",
+    "nanoflann",
+    "mfem",
+    "alglib",
+    "vtk"
+  ]
+}

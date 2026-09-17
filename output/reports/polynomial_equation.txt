@@ -1,0 +1,19 @@
+=======================================================
+       3D PAUL TRAP FIELD SOLVER: POLYNOMIAL FIT       
+=======================================================
+
+V(x, y, z) = 1.769833e+01
+  + (-3.231938e+01) * x
+  + (4.002324e+00) * y
+  + (8.429810e+00) * z
+  + (3.284198e+06) * x^2
+  + (-5.402174e+06) * y^2
+  + (1.434637e+06) * z^2
+  + (-1.709430e+05) * x*y
+  + (-1.323551e+04) * y*z
+  + (-3.741394e+03) * z*x
+
+--- Analytical Multipole Mode Equivalents ---
+Radial Quadrupole (c_xx - c_yy)/2: 4.34319e+06 V/m^2
+Axial Quadrupole c_zz:             1.43464e+06 V/m^2
+Laplacian residual (2*c_xx + 2*c_yy + 2*c_zz): -1.36668e+06 V/m^2

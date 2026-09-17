@@ -1,0 +1,14 @@
+-------------------------------------------------------
+            PAUL TRAP FIELD VALIDATION METRICS        
+-------------------------------------------------------
+Sample Points:         9261
+Relative L2 Error:     5.479871e-02
+Absolute L2 (RMS) Err: 1.006013e+00 V
+Max (L_inf) Error:     2.848373e+00 V
+Mean Absolute Error:   8.572313e-01 V
+-------------------------------------------------------
+
+Detailed Residual Statistics:
+Min Signed Residual: -2.84837 V
+Max Signed Residual: 1.46179 V
+Residual Variance:   1.0112 V^2
