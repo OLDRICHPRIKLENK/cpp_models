@@ -7,6 +7,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/paul_trap_lib.dir/src/interpolation/regular_grid.cpp.o.d"
   "CMakeFiles/paul_trap_lib.dir/src/physics/analytical.cpp.o"
   "CMakeFiles/paul_trap_lib.dir/src/physics/analytical.cpp.o.d"
+  "CMakeFiles/paul_trap_lib.dir/src/physics/bem_solver.cpp.o"
+  "CMakeFiles/paul_trap_lib.dir/src/physics/bem_solver.cpp.o.d"
   "CMakeFiles/paul_trap_lib.dir/src/physics/fem_solver.cpp.o"
   "CMakeFiles/paul_trap_lib.dir/src/physics/fem_solver.cpp.o.d"
   "CMakeFiles/paul_trap_lib.dir/src/validation/metrics.cpp.o"

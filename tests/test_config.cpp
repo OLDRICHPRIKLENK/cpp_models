@@ -24,6 +24,12 @@ void test_load_valid_config() {
     assert(std::abs(v[1] - (-100.0)) < 1e-9);
     assert(std::abs(v[4] - 50.0) < 1e-9);
 
+    assert(cfg.solver.method == "bem");
+    assert(cfg.bem.element_type == "triangle");
+    assert(cfg.bem.collocation_method == "centroid");
+    assert(cfg.bem.quadrature_order == 4);
+    assert(cfg.output.vtk_bem_file == "output/vtk/bem_solution.vtu");
+
     std::cout << "[PASS] Valid config loaded successfully." << std::endl;
 }
 
@@ -41,6 +47,15 @@ void test_invalid_config_handling() {
     try {
         core::ConfigParser::validate(bad_cfg);
         assert(false && "Should have thrown for negative r0");
+    } catch (const std::runtime_error& e) {
+        std::cout << "  Caught expected exception: " << e.what() << std::endl;
+    }
+
+    core::TrapConfig bad_solver_cfg;
+    bad_solver_cfg.solver.method = "invalid_solver";
+    try {
+        core::ConfigParser::validate(bad_solver_cfg);
+        assert(false && "Should have thrown for invalid solver method");
     } catch (const std::runtime_error& e) {
         std::cout << "  Caught expected exception: " << e.what() << std::endl;
     }

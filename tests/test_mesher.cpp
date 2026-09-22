@@ -57,9 +57,32 @@ void test_mesher_validation() {
     std::cout << "[PASS] Mesher parameter validation verified." << std::endl;
 }
 
+void test_surface_mesh_generation() {
+    std::cout << "[TEST] Running Mesher with surface_only = true..." << std::endl;
+    auto cfg = core::ConfigParser::load("config.toml");
+    
+    cfg.mesh.cl_scale = 0.001;
+    cfg.mesh.mesh_file = "data/meshes/test_surface_trap.msh";
+
+    geometry::Mesher mesher(cfg);
+    auto stats = mesher.generate(true);
+
+    assert(stats.is_surface_only);
+    assert(stats.num_vertices > 20);
+    assert(stats.num_elements > 50);
+    assert(stats.num_surfaces == 6);
+    assert(std::filesystem::exists(stats.mesh_path));
+    assert(std::filesystem::file_size(stats.mesh_path) > 500);
+
+    std::cout << "[PASS] Mesher successfully created 2D surface mesh with "
+              << stats.num_vertices << " vertices and "
+              << stats.num_elements << " triangles." << std::endl;
+}
+
 int main() {
     try {
         test_mesh_generation();
+        test_surface_mesh_generation();
         test_mesher_validation();
         std::cout << "=== ALL MESHER TESTS PASSED ===" << std::endl;
         return 0;

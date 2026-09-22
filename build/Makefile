@@ -218,6 +218,19 @@ test_fem/fast:
 .PHONY : test_fem/fast
 
 #=============================================================================
+# Target rules for targets named test_bem
+
+# Build rule for target.
+test_bem: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_bem
+.PHONY : test_bem
+
+# fast build rule for target.
+test_bem/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_bem.dir/build.make CMakeFiles/test_bem.dir/build
+.PHONY : test_bem/fast
+
+#=============================================================================
 # Target rules for targets named test_interpolation
 
 # Build rule for target.
@@ -675,6 +688,30 @@ src/physics/analytical.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/paul_trap_lib.dir/build.make CMakeFiles/paul_trap_lib.dir/src/physics/analytical.cpp.s
 .PHONY : src/physics/analytical.cpp.s
 
+src/physics/bem_solver.o: src/physics/bem_solver.cpp.o
+.PHONY : src/physics/bem_solver.o
+
+# target to build an object file
+src/physics/bem_solver.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/paul_trap_lib.dir/build.make CMakeFiles/paul_trap_lib.dir/src/physics/bem_solver.cpp.o
+.PHONY : src/physics/bem_solver.cpp.o
+
+src/physics/bem_solver.i: src/physics/bem_solver.cpp.i
+.PHONY : src/physics/bem_solver.i
+
+# target to preprocess a source file
+src/physics/bem_solver.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/paul_trap_lib.dir/build.make CMakeFiles/paul_trap_lib.dir/src/physics/bem_solver.cpp.i
+.PHONY : src/physics/bem_solver.cpp.i
+
+src/physics/bem_solver.s: src/physics/bem_solver.cpp.s
+.PHONY : src/physics/bem_solver.s
+
+# target to generate assembly for a file
+src/physics/bem_solver.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/paul_trap_lib.dir/build.make CMakeFiles/paul_trap_lib.dir/src/physics/bem_solver.cpp.s
+.PHONY : src/physics/bem_solver.cpp.s
+
 src/physics/fem_solver.o: src/physics/fem_solver.cpp.o
 .PHONY : src/physics/fem_solver.o
 
@@ -746,6 +783,30 @@ tests/test_analytical.s: tests/test_analytical.cpp.s
 tests/test_analytical.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_analytical.dir/build.make CMakeFiles/test_analytical.dir/tests/test_analytical.cpp.s
 .PHONY : tests/test_analytical.cpp.s
+
+tests/test_bem.o: tests/test_bem.cpp.o
+.PHONY : tests/test_bem.o
+
+# target to build an object file
+tests/test_bem.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_bem.dir/build.make CMakeFiles/test_bem.dir/tests/test_bem.cpp.o
+.PHONY : tests/test_bem.cpp.o
+
+tests/test_bem.i: tests/test_bem.cpp.i
+.PHONY : tests/test_bem.i
+
+# target to preprocess a source file
+tests/test_bem.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_bem.dir/build.make CMakeFiles/test_bem.dir/tests/test_bem.cpp.i
+.PHONY : tests/test_bem.cpp.i
+
+tests/test_bem.s: tests/test_bem.cpp.s
+.PHONY : tests/test_bem.s
+
+# target to generate assembly for a file
+tests/test_bem.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_bem.dir/build.make CMakeFiles/test_bem.dir/tests/test_bem.cpp.s
+.PHONY : tests/test_bem.cpp.s
 
 tests/test_config.o: tests/test_config.cpp.o
 .PHONY : tests/test_config.o
@@ -880,6 +941,7 @@ help:
 	@echo "... paul_trap_lib"
 	@echo "... paul_trap_sim"
 	@echo "... test_analytical"
+	@echo "... test_bem"
 	@echo "... test_config"
 	@echo "... test_fem"
 	@echo "... test_interpolation"
@@ -939,6 +1001,9 @@ help:
 	@echo "... src/physics/analytical.o"
 	@echo "... src/physics/analytical.i"
 	@echo "... src/physics/analytical.s"
+	@echo "... src/physics/bem_solver.o"
+	@echo "... src/physics/bem_solver.i"
+	@echo "... src/physics/bem_solver.s"
 	@echo "... src/physics/fem_solver.o"
 	@echo "... src/physics/fem_solver.i"
 	@echo "... src/physics/fem_solver.s"
@@ -948,6 +1013,9 @@ help:
 	@echo "... tests/test_analytical.o"
 	@echo "... tests/test_analytical.i"
 	@echo "... tests/test_analytical.s"
+	@echo "... tests/test_bem.o"
+	@echo "... tests/test_bem.i"
+	@echo "... tests/test_bem.s"
 	@echo "... tests/test_config.o"
 	@echo "... tests/test_config.i"
 	@echo "... tests/test_config.s"

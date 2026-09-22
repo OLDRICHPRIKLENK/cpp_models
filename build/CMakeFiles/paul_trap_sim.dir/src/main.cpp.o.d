@@ -1273,6 +1273,7 @@ CMakeFiles/paul_trap_sim.dir/src/main.cpp.o: \
   /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/include/geometry/mesher.hpp \
   /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/include/physics/analytical.hpp \
   /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/include/physics/fem_solver.hpp \
+  /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/include/physics/bem_solver.hpp \
   /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/include/interpolation/regular_grid.hpp \
   /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/include/interpolation/rbf_interpolator.hpp \
   /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/include/validation/metrics.hpp \

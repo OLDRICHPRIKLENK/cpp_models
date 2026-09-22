@@ -24,6 +24,16 @@ struct MeshConfig {
     int mesh_order{1};
 };
 
+struct SolverConfig {
+    std::string method{"fem"}; // 'fem' or 'bem'
+};
+
+struct BemConfig {
+    std::string element_type{"triangle"};
+    std::string collocation_method{"centroid"};
+    int quadrature_order{4};
+};
+
 struct FemConfig {
     int order{1};
     int refine_steps{0};
@@ -75,6 +85,7 @@ struct InterpolationConfig {
 
 struct OutputConfig {
     std::string vtk_fem_file{"output/vtk/fem_solution.vtu"};
+    std::string vtk_bem_file{"output/vtk/bem_solution.vtu"};
     std::string vtk_interpolated_file{"output/vtk/interpolated_grid.vtu"};
     std::string vtk_analytical_file{"output/vtk/analytical_field.vtu"};
     std::string vtk_residual_file{"output/vtk/residual_error.vtu"};
@@ -83,6 +94,8 @@ struct OutputConfig {
 };
 
 struct TrapConfig {
+    SolverConfig solver;
+    BemConfig bem;
     GeometryConfig geometry;
     MeshConfig mesh;
     FemConfig fem;
@@ -106,6 +119,18 @@ public:
         }
 
         TrapConfig cfg;
+
+        // [solver] (optional, defaults to "fem")
+        if (auto slv = tbl["solver"].as_table()) {
+            cfg.solver.method = slv->get("method")->value_or(cfg.solver.method);
+        }
+
+        // [bem] (optional, defaults provided)
+        if (auto bem = tbl["bem"].as_table()) {
+            cfg.bem.element_type = bem->get("element_type")->value_or(cfg.bem.element_type);
+            cfg.bem.collocation_method = bem->get("collocation_method")->value_or(cfg.bem.collocation_method);
+            cfg.bem.quadrature_order = bem->get("quadrature_order")->value_or(cfg.bem.quadrature_order);
+        }
 
         // [geometry]
         if (auto geom = tbl["geometry"].as_table()) {
@@ -172,6 +197,7 @@ public:
         // [output]
         if (auto out = tbl["output"].as_table()) {
             cfg.output.vtk_fem_file = out->get("vtk_fem_file")->value_or(cfg.output.vtk_fem_file);
+            cfg.output.vtk_bem_file = out->get("vtk_bem_file")->value_or(cfg.output.vtk_bem_file);
             cfg.output.vtk_interpolated_file = out->get("vtk_interpolated_file")->value_or(cfg.output.vtk_interpolated_file);
             cfg.output.vtk_analytical_file = out->get("vtk_analytical_file")->value_or(cfg.output.vtk_analytical_file);
             cfg.output.vtk_residual_file = out->get("vtk_residual_file")->value_or(cfg.output.vtk_residual_file);
@@ -186,6 +212,18 @@ public:
     }
 
     static void validate(const TrapConfig& cfg) {
+        if (cfg.solver.method != "fem" && cfg.solver.method != "bem") {
+            throw std::runtime_error("Invalid solver: method must be 'fem' or 'bem'.");
+        }
+        if (cfg.bem.element_type != "triangle") {
+            throw std::runtime_error("Invalid bem: element_type must be 'triangle'.");
+        }
+        if (cfg.bem.collocation_method != "centroid") {
+            throw std::runtime_error("Invalid bem: collocation_method must be 'centroid'.");
+        }
+        if (cfg.bem.quadrature_order < 1) {
+            throw std::runtime_error("Invalid bem: quadrature_order must be >= 1.");
+        }
         if (cfg.geometry.r0 <= 0.0) throw std::runtime_error("Invalid geometry: r0 must be positive.");
         if (cfg.geometry.z0 <= 0.0) throw std::runtime_error("Invalid geometry: z0 must be positive.");
         if (cfg.mesh.cl_scale <= 0.0) throw std::runtime_error("Invalid mesh: cl_scale must be positive.");

@@ -138,6 +138,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/test_mesher.dir/DependInfo.cmake"
   "CMakeFiles/test_analytical.dir/DependInfo.cmake"
   "CMakeFiles/test_fem.dir/DependInfo.cmake"
+  "CMakeFiles/test_bem.dir/DependInfo.cmake"
   "CMakeFiles/test_interpolation.dir/DependInfo.cmake"
   "CMakeFiles/test_validation.dir/DependInfo.cmake"
   )

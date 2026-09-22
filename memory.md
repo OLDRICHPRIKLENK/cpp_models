@@ -104,6 +104,15 @@ The objective is to compute, interpolate, validate, and visualize 3D electrostat
   - Native VTK `.vtu` exporter for FEM mesh & scalar potential.
   - Verification: `tests/test_fem.cpp` passed 100% (maximum principle, partition of unity $\sum \phi_k \equiv 1.0$, nodal data, and VTK write).
 
+- [x] **BEM Laplace Solver Module (Collocation BEM):**
+  - `include/physics/bem_solver.hpp`, `src/physics/bem_solver.cpp`: Solves 6 independent basis Boundary Integral problems on 2D surface triangle mesh using dense Eigen algebra.
+  - Collocation at triangle centroids; analytical closed-form evaluation of weakly singular diagonal elements ($G_{ii}$) via polar sub-triangle integration.
+  - 4-point symmetric Gaussian quadrature for off-diagonal single/double layer kernels.
+  - Rigid-body regularization ensuring exact equipotential conservation ($\mathbf{H}\mathbf{1} = \mathbf{0}$, partition-of-unity deviation $< 5\,\mu\text{V}$).
+  - Direct boundary representation evaluation onto `RegularGrid` coordinates: $\phi(\mathbf{x}) = \sum_j (q_j g_j(\mathbf{x}) - u_j h_j(\mathbf{x}))$.
+  - Exports 2D surface mesh with potentials and charge densities to `output/vtk/bem_solution.vtu`.
+  - Verification: `tests/test_bem.cpp` passed 100% (partition of unity, maximum principle, geometric symmetry, VTK export).
+
 - [x] **Spatial Interpolation Module:**
   - `include/interpolation/regular_grid.hpp`, `src/interpolation/regular_grid.cpp`: 3D Cartesian tensor grid and multivariate polynomial least-squares fit (supporting degrees 1 through 4: 4 to 35 terms) with analytical $\vec{E} = -\nabla V$. Formats polynomial equation and logs to terminal and disk. Safe fallback to degree 2 for out-of-range degrees.
   - `include/interpolation/rbf_interpolator.hpp`, `src/interpolation/rbf_interpolator.cpp`: Multilayer RBF model powered by ALGLIB, with KD-tree nearest-neighbor spatial queries via `nanoflann`.
@@ -115,8 +124,8 @@ The objective is to compute, interpolate, validate, and visualize 3D electrostat
   - Verification: `tests/test_validation.cpp` passed 100%.
 
 - [x] **Build & Test Suite:**
-  - Top-level `CMakeLists.txt` configuring static library `paul_trap_lib`, executable `paul_trap_sim`, and 6 unit test executables.
-  - CTest test suite: 6/6 tests passed (100%) in 0.78 seconds.
+  - Top-level `CMakeLists.txt` configuring static library `paul_trap_lib`, executable `paul_trap_sim`, and 7 unit test executables (`test_config`, `test_mesher`, `test_analytical`, `test_fem`, `test_bem`, `test_interpolation`, `test_validation`).
+  - CTest test suite: 7/7 tests passed (100%).
 
 ## 5. Quantitative Simulation Outcomes & Benchmarks
 From execution of `paul_trap_sim` with standard parameters ($r_0 = 5\,\text{mm}, z_0 = 5\,\text{mm}$, voltages $[+100, -100, +100, -100, +50, +50]\,\text{V}$):

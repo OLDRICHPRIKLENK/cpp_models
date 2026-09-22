@@ -78,6 +78,7 @@ set(LIB_SOURCES
     src/geometry/mesher.cpp
     src/physics/analytical.cpp
     src/physics/fem_solver.cpp
+    src/physics/bem_solver.cpp
     src/interpolation/regular_grid.cpp
     src/interpolation/rbf_interpolator.cpp
     src/validation/metrics.cpp
@@ -132,5 +133,6 @@ add_paultrap_test(test_config tests/test_config.cpp)
 add_paultrap_test(test_mesher tests/test_mesher.cpp)
 add_paultrap_test(test_analytical tests/test_analytical.cpp)
 add_paultrap_test(test_fem tests/test_fem.cpp)
+add_paultrap_test(test_bem tests/test_bem.cpp)
 add_paultrap_test(test_interpolation tests/test_interpolation.cpp)
 add_paultrap_test(test_validation tests/test_validation.cpp)

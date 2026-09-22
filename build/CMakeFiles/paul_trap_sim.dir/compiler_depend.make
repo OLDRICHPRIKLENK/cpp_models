@@ -1054,6 +1054,7 @@ CMakeFiles/paul_trap_sim.dir/src/main.cpp.o: /Users/oldrichpriklenk/LocalDocumen
   /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/include/interpolation/rbf_interpolator.hpp \
   /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/include/interpolation/regular_grid.hpp \
   /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/include/physics/analytical.hpp \
+  /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/include/physics/bem_solver.hpp \
   /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/include/physics/fem_solver.hpp \
   /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/include/validation/metrics.hpp \
   /opt/homebrew/include/eigen3/Eigen/Cholesky \
@@ -1780,6 +1781,8 @@ CMakeFiles/paul_trap_sim.dir/src/main.cpp.o: /Users/oldrichpriklenk/LocalDocumen
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/new:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/mutex:
+
+/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/include/physics/bem_solver.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/math.h:
 

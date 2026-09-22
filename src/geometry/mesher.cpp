@@ -29,13 +29,14 @@ struct GmshSessionGuard {
 Mesher::Mesher(const core::TrapConfig& config)
     : geom_(config.geometry), mesh_cfg_(config.mesh) {}
 
-MeshStats Mesher::generate() {
-    stats_ = generate(geom_, mesh_cfg_);
+MeshStats Mesher::generate(bool surface_only) {
+    stats_ = generate(geom_, mesh_cfg_, surface_only);
     return stats_;
 }
 
 MeshStats Mesher::generate(const core::GeometryConfig& geom, 
-                          const core::MeshConfig& mesh_cfg) {
+                          const core::MeshConfig& mesh_cfg,
+                          bool surface_only) {
     if (geom.r0 <= 0.0 || geom.z0 <= 0.0) {
         throw std::runtime_error("Mesher: Geometric dimensions r0 and z0 must be positive.");
     }
@@ -112,12 +113,15 @@ MeshStats Mesher::generate(const core::GeometryConfig& geom,
     int loop_top = gmsh::model::geo::addCurveLoop({arc_top[0], arc_top[1], arc_top[2], arc_top[3]});
     int surf_top = gmsh::model::geo::addPlaneSurface({loop_top});
 
-    // 3D Volume enclosure
-    int surf_loop = gmsh::model::geo::addSurfaceLoop({
-        surf_bot, surf_top,
-        surf_radial[0], surf_radial[1], surf_radial[2], surf_radial[3]
-    });
-    int vol = gmsh::model::geo::addVolume({surf_loop});
+    int vol = 0;
+    if (!surface_only) {
+        // 3D Volume enclosure
+        int surf_loop = gmsh::model::geo::addSurfaceLoop({
+            surf_bot, surf_top,
+            surf_radial[0], surf_radial[1], surf_radial[2], surf_radial[3]
+        });
+        vol = gmsh::model::geo::addVolume({surf_loop});
+    }
 
     // Synchronize geometry to Gmsh CAD model
     gmsh::model::geo::synchronize();
@@ -135,11 +139,16 @@ MeshStats Mesher::generate(const core::GeometryConfig& geom,
     gmsh::model::addPhysicalGroup(2, {surf_top}, core::BOUNDARY_ID_ENDCAP_1, "Endcap1");
     // Endcap 2: -z bottom planar disc
     gmsh::model::addPhysicalGroup(2, {surf_bot}, core::BOUNDARY_ID_ENDCAP_2, "Endcap2");
-    // 3D domain volume
-    gmsh::model::addPhysicalGroup(3, {vol}, core::DOMAIN_VOLUME_ID, "Domain");
 
-    // Generate 3D tetrahedral mesh
-    gmsh::model::mesh::generate(3);
+    if (!surface_only) {
+        // 3D domain volume
+        gmsh::model::addPhysicalGroup(3, {vol}, core::DOMAIN_VOLUME_ID, "Domain");
+        // Generate 3D tetrahedral mesh
+        gmsh::model::mesh::generate(3);
+    } else {
+        // Generate 2D surface triangle mesh only
+        gmsh::model::mesh::generate(2);
+    }
 
     // Save mesh file
     gmsh::write(mesh_cfg.mesh_file);
@@ -150,24 +159,41 @@ MeshStats Mesher::generate(const core::GeometryConfig& geom,
     std::vector<double> param_coords;
     gmsh::model::mesh::getNodes(node_tags, coords, param_coords);
 
-    std::vector<int> elem_types;
-    std::vector<std::vector<std::size_t>> elem_tags;
-    std::vector<std::vector<std::size_t>> elem_node_tags;
-    gmsh::model::mesh::getElements(elem_types, elem_tags, elem_node_tags, 3, vol);
+    size_t num_elements = 0;
+    if (!surface_only) {
+        std::vector<int> elem_types;
+        std::vector<std::vector<std::size_t>> elem_tags;
+        std::vector<std::vector<std::size_t>> elem_node_tags;
+        gmsh::model::mesh::getElements(elem_types, elem_tags, elem_node_tags, 3, vol);
 
-    size_t num_tets = 0;
-    for (const auto& tags : elem_tags) {
-        num_tets += tags.size();
+        for (const auto& tags : elem_tags) {
+            num_elements += tags.size();
+        }
+    } else {
+        std::vector<int> elem_types;
+        std::vector<std::vector<std::size_t>> elem_tags;
+        std::vector<std::vector<std::size_t>> elem_node_tags;
+        gmsh::model::mesh::getElements(elem_types, elem_tags, elem_node_tags, 2);
+
+        for (const auto& tags : elem_tags) {
+            num_elements += tags.size();
+        }
     }
 
     MeshStats stats;
     stats.num_vertices = node_tags.size();
-    stats.num_elements = num_tets;
+    stats.num_elements = num_elements;
     stats.num_surfaces = 6;
     stats.mesh_path = mesh_cfg.mesh_file;
+    stats.is_surface_only = surface_only;
 
-    std::cout << "[Mesher] Generated 3D mesh: " << stats.num_vertices << " vertices, "
-              << stats.num_elements << " tetrahedra -> " << stats.mesh_path << std::endl;
+    if (surface_only) {
+        std::cout << "[Mesher] Generated 2D surface mesh: " << stats.num_vertices << " vertices, "
+                  << stats.num_elements << " triangles -> " << stats.mesh_path << std::endl;
+    } else {
+        std::cout << "[Mesher] Generated 3D volume mesh: " << stats.num_vertices << " vertices, "
+                  << stats.num_elements << " tetrahedra -> " << stats.mesh_path << std::endl;
+    }
 
     return stats;
 }
