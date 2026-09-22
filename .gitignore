@@ -1,0 +1,23 @@
+# Build artifacts
+build/
+bin/
+lib/
+
+# Virtual environments
+.venv/
+downstream_analysis/.venv/
+venv/
+ENV/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+
+# Generated plot outputs
+downstream_analysis/plots/
+
+# OS artifacts
+.DS_Store
