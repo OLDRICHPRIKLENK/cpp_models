@@ -31,6 +31,7 @@ int main(int argc, char* argv[]) {
                   << config.voltages.v1 << ", " << config.voltages.v2 << ", "
                   << config.voltages.v3 << ", " << config.voltages.v4 << ", "
                   << config.voltages.v5 << ", " << config.voltages.v6 << "] V" << std::endl;
+        std::cout << "  Polynomial fit degree: " << config.interpolation.polynomial_degree << std::endl;
 
         // 2. 3D Mesh Generation (Gmsh)
         std::cout << "\n[Step 2/7] Generating 3D Paul trap geometry and mesh..." << std::endl;

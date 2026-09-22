@@ -180,3 +180,16 @@ This backlog tracks all tasks, decisions, implementation steps, and reasoning ou
   - Particle Dynamics Suitability:
     1. **Using RBF Interpolator for particle tracking:** Fully production-ready. Matches true experimental field with parts-per-million accuracy and captures physical octupole/dodecapole terms.
     2. **Using Polynomial Interpolator:** Highly suitable for laser-cooled/tightly bound ions ($r < 0.2 r_0$), where higher-order terms are attenuated by $(r/r_0)^4 < 1.6 \times 10^{-3}$. For large-amplitude ions ($r > 0.4 r_0$), the 5.4% anharmonicity shifts secular frequencies by ~1-3% and can trigger higher-order nonlinear resonance lines.
+
+### Entry 10: Extension of Polynomial Interpolator to Degree 4 (Anharmonic Multipole Expansion)
+- **Implementation:** `src/interpolation/regular_grid.cpp`, `tests/test_interpolation.cpp`.
+- **Key Updates:**
+  - Updated `PolynomialInterpolator` constructor validation check (`if (degree_ < 1 || degree_ > 4) degree_ = 2;`) to allow degrees up to 4.
+  - Extended monomial term construction, QR least-squares fitting, and evaluation:
+    - Degree 1: 4 terms ($1, x, y, z$)
+    - Degree 2: 10 terms (quadrupole)
+    - Degree 3: 20 terms (hexapole)
+    - Degree 4: 35 terms (octupole & dodecapole)
+  - Implemented analytical electric field calculation ($\vec{E} = -\nabla V$) and equation logging for degrees 1 through 4.
+  - Added unit test `test_polynomial_interpolator_degree4()` in `tests/test_interpolation.cpp` verifying degree 4 exact recovery, derivatives, and degree fallback.
+  - Verified 100% test pass rate across all 6 unit test suites.

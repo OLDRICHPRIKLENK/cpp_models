@@ -105,9 +105,9 @@ The objective is to compute, interpolate, validate, and visualize 3D electrostat
   - Verification: `tests/test_fem.cpp` passed 100% (maximum principle, partition of unity $\sum \phi_k \equiv 1.0$, nodal data, and VTK write).
 
 - [x] **Spatial Interpolation Module:**
-  - `include/interpolation/regular_grid.hpp`, `src/interpolation/regular_grid.cpp`: 3D Cartesian tensor grid and multivariate polynomial least-squares fit with analytical $\vec{E} = -\nabla V$. Formats polynomial equation and logs to terminal and disk.
+  - `include/interpolation/regular_grid.hpp`, `src/interpolation/regular_grid.cpp`: 3D Cartesian tensor grid and multivariate polynomial least-squares fit (supporting degrees 1 through 4: 4 to 35 terms) with analytical $\vec{E} = -\nabla V$. Formats polynomial equation and logs to terminal and disk. Safe fallback to degree 2 for out-of-range degrees.
   - `include/interpolation/rbf_interpolator.hpp`, `src/interpolation/rbf_interpolator.cpp`: Multilayer RBF model powered by ALGLIB, with KD-tree nearest-neighbor spatial queries via `nanoflann`.
-  - Verification: `tests/test_interpolation.cpp` passed 100%.
+  - Verification: `tests/test_interpolation.cpp` passed 100% (quadratic & degree 4 tests).
 
 - [x] **Validation & Error Metrics Module:**
   - `include/validation/metrics.hpp`, `src/validation/metrics.cpp`: Calculates relative $L_2$, absolute $L_2$ (RMS), max ($L_\infty$), and mean absolute error.

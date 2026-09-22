@@ -78,6 +78,63 @@ void test_polynomial_interpolator() {
     std::cout << "[PASS] PolynomialInterpolator correctly fits and computes electric fields." << std::endl;
 }
 
+void test_polynomial_interpolator_degree4() {
+    std::cout << "[TEST] Testing PolynomialInterpolator fitting degree 4 polynomial..." << std::endl;
+
+    // Test degree 4 potential with mixed and quartic terms
+    const int n_side = 5;
+    const int n_pts = n_side * n_side * n_side; // 125 points > 35 terms
+    Eigen::Matrix3Xd pts(3, n_pts);
+    Eigen::VectorXd vals(n_pts);
+
+    int idx = 0;
+    for (int ix = -2; ix <= 2; ++ix) {
+        for (int iy = -2; iy <= 2; ++iy) {
+            for (int iz = -2; iz <= 2; ++iz) {
+                double x = ix * 0.001;
+                double y = iy * 0.001;
+                double z = iz * 0.001;
+                pts(0, idx) = x;
+                pts(1, idx) = y;
+                pts(2, idx) = z;
+                vals(idx) = 5.0 + 10.0 * x - 20.0 * y + 30.0 * z
+                          + 100.0 * x * x - 200.0 * y * y + 300.0 * z * z
+                          + 1e6 * (x * x * x * x) - 2e6 * (y * y * y * y) + 3e6 * (x * x * y * y);
+                ++idx;
+            }
+        }
+    }
+
+    interpolation::PolynomialInterpolator poly(4);
+    assert(poly.degree() == 4);
+    poly.fit(pts, vals);
+    assert(poly.is_fitted());
+    assert(poly.coefficients().size() == 35);
+
+    // Test evaluation at an arbitrary test point
+    double tx = 0.0006, ty = -0.0008, tz = 0.0004;
+    double exact = 5.0 + 10.0 * tx - 20.0 * ty + 30.0 * tz
+                 + 100.0 * tx * tx - 200.0 * ty * ty + 300.0 * tz * tz
+                 + 1e6 * std::pow(tx, 4) - 2e6 * std::pow(ty, 4) + 3e6 * (tx * tx * ty * ty);
+    double fitted = poly.evaluate(tx, ty, tz);
+    assert(std::abs(fitted - exact) < 1e-6);
+
+    // Electric field: Ex = -dV/dx, Ey = -dV/dy, Ez = -dV/dz
+    double dV_dx = 10.0 + 200.0 * tx + 4e6 * std::pow(tx, 3) + 6e6 * tx * (ty * ty);
+    double dV_dy = -20.0 - 400.0 * ty - 8e6 * std::pow(ty, 3) + 6e6 * (tx * tx) * ty;
+    double dV_dz = 30.0 + 600.0 * tz;
+    Eigen::Vector3d e_field = poly.electric_field(tx, ty, tz);
+    assert(std::abs(e_field.x() - (-dV_dx)) < 1e-5);
+    assert(std::abs(e_field.y() - (-dV_dy)) < 1e-5);
+    assert(std::abs(e_field.z() - (-dV_dz)) < 1e-5);
+
+    // Test fallback check on invalid degree > 4
+    interpolation::PolynomialInterpolator poly_invalid(5);
+    assert(poly_invalid.degree() == 2); // Falls back to default 2
+
+    std::cout << "[PASS] PolynomialInterpolator degree 4 fitting, derivatives, and degree fallback verified." << std::endl;
+}
+
 void test_rbf_interpolator() {
     std::cout << "[TEST] Testing RbfInterpolator with ALGLIB and nanoflann..." << std::endl;
 
@@ -123,6 +180,7 @@ int main() {
     try {
         test_regular_grid();
         test_polynomial_interpolator();
+        test_polynomial_interpolator_degree4();
         test_rbf_interpolator();
         std::cout << "=== ALL INTERPOLATION TESTS PASSED ===" << std::endl;
         return 0;

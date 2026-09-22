@@ -36,7 +36,7 @@ v5 = 50.0
 v6 = 50.0
 
 [interpolation]
-polynomial_degree = 2  # Degree of multivariate polynomial fit (2 for quadrupole)
+polynomial_degree = 4  # Degree of multivariate polynomial fit (2 for quadrupole)
 rbf_basis = "multiquadric"
 rbf_smoothing = 1.0e-5
 

@@ -115,7 +115,11 @@ endif()
 
 enable_testing()
 
-file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/config.toml" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
+if(UNIX)
+    file(CREATE_LINK "${CMAKE_CURRENT_SOURCE_DIR}/config.toml" "${CMAKE_CURRENT_BINARY_DIR}/config.toml" SYMBOLIC)
+else()
+    file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/config.toml" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
+endif()
 
 function(add_paultrap_test TEST_NAME TEST_SOURCE)
     add_executable(${TEST_NAME} ${TEST_SOURCE})

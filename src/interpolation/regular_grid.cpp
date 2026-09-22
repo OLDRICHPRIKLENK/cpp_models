@@ -157,40 +157,148 @@ void RegularGrid::export_vtk(const std::string& filepath) const {
 // PolynomialInterpolator Implementation
 // ---------------------------------------------------------------------------
 
+namespace {
+
+struct PolynomialTerm {
+    int px{0};
+    int py{0};
+    int pz{0};
+    std::string name;
+};
+
+const std::vector<PolynomialTerm>& get_terms_for_degree(int degree) {
+    // Degree 1: 4 terms
+    static const std::vector<PolynomialTerm> terms1 = {
+        {0, 0, 0, "1"},
+        {1, 0, 0, "x"},
+        {0, 1, 0, "y"},
+        {0, 0, 1, "z"}
+    };
+
+    // Degree 2: 10 terms (quadrupole expansion)
+    static const std::vector<PolynomialTerm> terms2 = {
+        {0, 0, 0, "1"},
+        {1, 0, 0, "x"},
+        {0, 1, 0, "y"},
+        {0, 0, 1, "z"},
+        {2, 0, 0, "x^2"},
+        {0, 2, 0, "y^2"},
+        {0, 0, 2, "z^2"},
+        {1, 1, 0, "x*y"},
+        {0, 1, 1, "y*z"},
+        {1, 0, 1, "z*x"}
+    };
+
+    // Degree 3: 20 terms
+    static const std::vector<PolynomialTerm> terms3 = {
+        {0, 0, 0, "1"},
+        {1, 0, 0, "x"},
+        {0, 1, 0, "y"},
+        {0, 0, 1, "z"},
+        {2, 0, 0, "x^2"},
+        {0, 2, 0, "y^2"},
+        {0, 0, 2, "z^2"},
+        {1, 1, 0, "x*y"},
+        {0, 1, 1, "y*z"},
+        {1, 0, 1, "z*x"},
+        {3, 0, 0, "x^3"},
+        {0, 3, 0, "y^3"},
+        {0, 0, 3, "z^3"},
+        {2, 1, 0, "x^2*y"},
+        {1, 2, 0, "x*y^2"},
+        {2, 0, 1, "x^2*z"},
+        {1, 0, 2, "x*z^2"},
+        {0, 2, 1, "y^2*z"},
+        {0, 1, 2, "y*z^2"},
+        {1, 1, 1, "x*y*z"}
+    };
+
+    // Degree 4: 35 terms (octupole & dodecapole terms)
+    static const std::vector<PolynomialTerm> terms4 = {
+        {0, 0, 0, "1"},
+        {1, 0, 0, "x"},
+        {0, 1, 0, "y"},
+        {0, 0, 1, "z"},
+        {2, 0, 0, "x^2"},
+        {0, 2, 0, "y^2"},
+        {0, 0, 2, "z^2"},
+        {1, 1, 0, "x*y"},
+        {0, 1, 1, "y*z"},
+        {1, 0, 1, "z*x"},
+        {3, 0, 0, "x^3"},
+        {0, 3, 0, "y^3"},
+        {0, 0, 3, "z^3"},
+        {2, 1, 0, "x^2*y"},
+        {1, 2, 0, "x*y^2"},
+        {2, 0, 1, "x^2*z"},
+        {1, 0, 2, "x*z^2"},
+        {0, 2, 1, "y^2*z"},
+        {0, 1, 2, "y*z^2"},
+        {1, 1, 1, "x*y*z"},
+        {4, 0, 0, "x^4"},
+        {0, 4, 0, "y^4"},
+        {0, 0, 4, "z^4"},
+        {3, 1, 0, "x^3*y"},
+        {1, 3, 0, "x*y^3"},
+        {3, 0, 1, "x^3*z"},
+        {1, 0, 3, "x*z^3"},
+        {0, 3, 1, "y^3*z"},
+        {0, 1, 3, "y*z^3"},
+        {2, 2, 0, "x^2*y^2"},
+        {0, 2, 2, "y^2*z^2"},
+        {2, 0, 2, "z^2*x^2"},
+        {2, 1, 1, "x^2*y*z"},
+        {1, 2, 1, "x*y^2*z"},
+        {1, 1, 2, "x*y*z^2"}
+    };
+
+    switch (degree) {
+        case 1: return terms1;
+        case 3: return terms3;
+        case 4: return terms4;
+        case 2:
+        default:
+            return terms2;
+    }
+}
+
+} // anonymous namespace
+
 PolynomialInterpolator::PolynomialInterpolator(int degree) : degree_(degree) {
-    if (degree_ != 2) {
-        // Degree 2 is primary for 3D quadrupole; higher degrees can be added if needed
+    if (degree_ < 1 || degree_ > 4) {
+        // Degree up to 4 supported; fallback to standard degree 2 quadrupole
         degree_ = 2;
     }
 }
 
 void PolynomialInterpolator::fit(const Eigen::Matrix3Xd& points, const Eigen::VectorXd& values) {
     const Eigen::Index n = points.cols();
-    if (n < 10) {
-        throw std::runtime_error("PolynomialInterpolator: Need at least 10 data points for 3D quadratic fit.");
+    const auto& terms = get_terms_for_degree(degree_);
+    const Eigen::Index num_terms = static_cast<Eigen::Index>(terms.size());
+
+    if (n < num_terms) {
+        throw std::runtime_error("PolynomialInterpolator: Need at least " + 
+                                 std::to_string(num_terms) + " data points for degree " + 
+                                 std::to_string(degree_) + " fit.");
     }
     if (values.size() != n) {
         throw std::runtime_error("PolynomialInterpolator: Point count and value count mismatch.");
     }
 
-    // Degree 2 model: V = c0 + c1*x + c2*y + c3*z + c4*x^2 + c5*y^2 + c6*z^2 + c7*x*y + c8*y*z + c9*z*x
-    // Design matrix A (N x 10)
-    Eigen::MatrixXd A(n, 10);
+    Eigen::MatrixXd A(n, num_terms);
     for (Eigen::Index i = 0; i < n; ++i) {
         const double x = points(0, i);
         const double y = points(1, i);
         const double z = points(2, i);
 
-        A(i, 0) = 1.0;
-        A(i, 1) = x;
-        A(i, 2) = y;
-        A(i, 3) = z;
-        A(i, 4) = x * x;
-        A(i, 5) = y * y;
-        A(i, 6) = z * z;
-        A(i, 7) = x * y;
-        A(i, 8) = y * z;
-        A(i, 9) = z * x;
+        const double x_pow[5] = {1.0, x, x * x, x * x * x, x * x * x * x};
+        const double y_pow[5] = {1.0, y, y * y, y * y * y, y * y * y * y};
+        const double z_pow[5] = {1.0, z, z * z, z * z * z, z * z * z * z};
+
+        for (Eigen::Index j = 0; j < num_terms; ++j) {
+            const auto& t = terms[j];
+            A(i, j) = x_pow[t.px] * y_pow[t.py] * z_pow[t.pz];
+        }
     }
 
     // Solve least-squares problem via Column-Pivoting Householder QR
@@ -200,11 +308,18 @@ void PolynomialInterpolator::fit(const Eigen::Matrix3Xd& points, const Eigen::Ve
 
 double PolynomialInterpolator::evaluate(double x, double y, double z) const noexcept {
     if (!is_fitted_) return 0.0;
-    const auto& c = coefficients_;
-    return c(0) 
-         + c(1) * x + c(2) * y + c(3) * z 
-         + c(4) * x * x + c(5) * y * y + c(6) * z * z 
-         + c(7) * x * y + c(8) * y * z + c(9) * z * x;
+    const auto& terms = get_terms_for_degree(degree_);
+    const double x_pow[5] = {1.0, x, x * x, x * x * x, x * x * x * x};
+    const double y_pow[5] = {1.0, y, y * y, y * y * y, y * y * y * y};
+    const double z_pow[5] = {1.0, z, z * z, z * z * z, z * z * z * z};
+
+    double val = 0.0;
+    const Eigen::Index n = std::min(static_cast<Eigen::Index>(terms.size()), coefficients_.size());
+    for (Eigen::Index j = 0; j < n; ++j) {
+        const auto& t = terms[j];
+        val += coefficients_(j) * x_pow[t.px] * y_pow[t.py] * z_pow[t.pz];
+    }
+    return val;
 }
 
 double PolynomialInterpolator::evaluate(const Eigen::Vector3d& pos) const noexcept {
@@ -213,13 +328,30 @@ double PolynomialInterpolator::evaluate(const Eigen::Vector3d& pos) const noexce
 
 Eigen::Vector3d PolynomialInterpolator::gradient(double x, double y, double z) const noexcept {
     if (!is_fitted_) return Eigen::Vector3d::Zero();
-    const auto& c = coefficients_;
-    // dV/dx = c1 + 2*c4*x + c7*y + c9*z
-    const double dV_dx = c(1) + 2.0 * c(4) * x + c(7) * y + c(9) * z;
-    // dV/dy = c2 + 2*c5*y + c7*x + c8*z
-    const double dV_dy = c(2) + 2.0 * c(5) * y + c(7) * x + c(8) * z;
-    // dV/dz = c3 + 2*c6*z + c8*y + c9*x
-    const double dV_dz = c(3) + 2.0 * c(6) * z + c(8) * y + c(9) * x;
+    const auto& terms = get_terms_for_degree(degree_);
+    const double x_pow[5] = {1.0, x, x * x, x * x * x, x * x * x * x};
+    const double y_pow[5] = {1.0, y, y * y, y * y * y, y * y * y * y};
+    const double z_pow[5] = {1.0, z, z * z, z * z * z, z * z * z * z};
+
+    double dV_dx = 0.0;
+    double dV_dy = 0.0;
+    double dV_dz = 0.0;
+
+    const Eigen::Index n = std::min(static_cast<Eigen::Index>(terms.size()), coefficients_.size());
+    for (Eigen::Index j = 0; j < n; ++j) {
+        const auto& t = terms[j];
+        const double c = coefficients_(j);
+
+        if (t.px > 0) {
+            dV_dx += c * t.px * x_pow[t.px - 1] * y_pow[t.py] * z_pow[t.pz];
+        }
+        if (t.py > 0) {
+            dV_dy += c * t.py * x_pow[t.px] * y_pow[t.py - 1] * z_pow[t.pz];
+        }
+        if (t.pz > 0) {
+            dV_dz += c * t.pz * x_pow[t.px] * y_pow[t.py] * z_pow[t.pz - 1];
+        }
+    }
 
     return {dV_dx, dV_dy, dV_dz};
 }
@@ -259,19 +391,14 @@ std::string PolynomialInterpolator::get_equation_string() const {
         return "Polynomial: Not fitted yet.";
     }
 
-    const auto& c = coefficients_;
+    const auto& terms = get_terms_for_degree(degree_);
+    const Eigen::Index n = std::min(static_cast<Eigen::Index>(terms.size()), coefficients_.size());
     std::ostringstream ss;
     ss << std::scientific << std::setprecision(6);
-    ss << "V(x, y, z) = " << c(0) << "\n"
-       << "  + (" << c(1) << ") * x\n"
-       << "  + (" << c(2) << ") * y\n"
-       << "  + (" << c(3) << ") * z\n"
-       << "  + (" << c(4) << ") * x^2\n"
-       << "  + (" << c(5) << ") * y^2\n"
-       << "  + (" << c(6) << ") * z^2\n"
-       << "  + (" << c(7) << ") * x*y\n"
-       << "  + (" << c(8) << ") * y*z\n"
-       << "  + (" << c(9) << ") * z*x";
+    ss << "V(x, y, z) = " << coefficients_(0);
+    for (Eigen::Index j = 1; j < n; ++j) {
+        ss << "\n  + (" << coefficients_(j) << ") * " << terms[j].name;
+    }
     return ss.str();
 }
 
