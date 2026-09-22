@@ -1,7 +1,7 @@
-test_config 2 0.109036
-test_mesher 2 0.0765148
-test_analytical 2 0.0528752
-test_fem 2 0.0859604
-test_interpolation 3 0.0426729
-test_validation 2 0.0547567
+test_config 7 0.0280675
+test_mesher 7 0.0221963
+test_analytical 7 0.0156654
+test_fem 7 0.0258333
+test_interpolation 8 0.0145312
+test_validation 7 0.0163916
 ---
