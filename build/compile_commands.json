@@ -1,0 +1,158 @@
+[
+{
+  "directory": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build",
+  "command": "/usr/bin/c++  -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src -std=c++20 -arch arm64 -Wall -Wextra -O3 -Wno-deprecated-declarations -Wno-deprecated-literal-operator -o CMakeFiles/alglib.dir/_deps/alglib-src/src/alglibinternal.cpp.o -c /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src/alglibinternal.cpp",
+  "file": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src/alglibinternal.cpp",
+  "output": "CMakeFiles/alglib.dir/_deps/alglib-src/src/alglibinternal.cpp.o"
+},
+{
+  "directory": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build",
+  "command": "/usr/bin/c++  -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src -std=c++20 -arch arm64 -Wall -Wextra -O3 -Wno-deprecated-declarations -Wno-deprecated-literal-operator -o CMakeFiles/alglib.dir/_deps/alglib-src/src/alglibmisc.cpp.o -c /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src/alglibmisc.cpp",
+  "file": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src/alglibmisc.cpp",
+  "output": "CMakeFiles/alglib.dir/_deps/alglib-src/src/alglibmisc.cpp.o"
+},
+{
+  "directory": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build",
+  "command": "/usr/bin/c++  -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src -std=c++20 -arch arm64 -Wall -Wextra -O3 -Wno-deprecated-declarations -Wno-deprecated-literal-operator -o CMakeFiles/alglib.dir/_deps/alglib-src/src/ap.cpp.o -c /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src/ap.cpp",
+  "file": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src/ap.cpp",
+  "output": "CMakeFiles/alglib.dir/_deps/alglib-src/src/ap.cpp.o"
+},
+{
+  "directory": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build",
+  "command": "/usr/bin/c++  -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src -std=c++20 -arch arm64 -Wall -Wextra -O3 -Wno-deprecated-declarations -Wno-deprecated-literal-operator -o CMakeFiles/alglib.dir/_deps/alglib-src/src/dataanalysis.cpp.o -c /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src/dataanalysis.cpp",
+  "file": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src/dataanalysis.cpp",
+  "output": "CMakeFiles/alglib.dir/_deps/alglib-src/src/dataanalysis.cpp.o"
+},
+{
+  "directory": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build",
+  "command": "/usr/bin/c++  -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src -std=c++20 -arch arm64 -Wall -Wextra -O3 -Wno-deprecated-declarations -Wno-deprecated-literal-operator -o CMakeFiles/alglib.dir/_deps/alglib-src/src/diffequations.cpp.o -c /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src/diffequations.cpp",
+  "file": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src/diffequations.cpp",
+  "output": "CMakeFiles/alglib.dir/_deps/alglib-src/src/diffequations.cpp.o"
+},
+{
+  "directory": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build",
+  "command": "/usr/bin/c++  -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src -std=c++20 -arch arm64 -Wall -Wextra -O3 -Wno-deprecated-declarations -Wno-deprecated-literal-operator -o CMakeFiles/alglib.dir/_deps/alglib-src/src/fasttransforms.cpp.o -c /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src/fasttransforms.cpp",
+  "file": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src/fasttransforms.cpp",
+  "output": "CMakeFiles/alglib.dir/_deps/alglib-src/src/fasttransforms.cpp.o"
+},
+{
+  "directory": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build",
+  "command": "/usr/bin/c++  -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src -std=c++20 -arch arm64 -Wall -Wextra -O3 -Wno-deprecated-declarations -Wno-deprecated-literal-operator -o CMakeFiles/alglib.dir/_deps/alglib-src/src/integration.cpp.o -c /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src/integration.cpp",
+  "file": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src/integration.cpp",
+  "output": "CMakeFiles/alglib.dir/_deps/alglib-src/src/integration.cpp.o"
+},
+{
+  "directory": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build",
+  "command": "/usr/bin/c++  -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src -std=c++20 -arch arm64 -Wall -Wextra -O3 -Wno-deprecated-declarations -Wno-deprecated-literal-operator -o CMakeFiles/alglib.dir/_deps/alglib-src/src/interpolation.cpp.o -c /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src/interpolation.cpp",
+  "file": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src/interpolation.cpp",
+  "output": "CMakeFiles/alglib.dir/_deps/alglib-src/src/interpolation.cpp.o"
+},
+{
+  "directory": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build",
+  "command": "/usr/bin/c++  -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src -std=c++20 -arch arm64 -Wall -Wextra -O3 -Wno-deprecated-declarations -Wno-deprecated-literal-operator -o CMakeFiles/alglib.dir/_deps/alglib-src/src/linalg.cpp.o -c /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src/linalg.cpp",
+  "file": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src/linalg.cpp",
+  "output": "CMakeFiles/alglib.dir/_deps/alglib-src/src/linalg.cpp.o"
+},
+{
+  "directory": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build",
+  "command": "/usr/bin/c++  -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src -std=c++20 -arch arm64 -Wall -Wextra -O3 -Wno-deprecated-declarations -Wno-deprecated-literal-operator -o CMakeFiles/alglib.dir/_deps/alglib-src/src/optimization.cpp.o -c /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src/optimization.cpp",
+  "file": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src/optimization.cpp",
+  "output": "CMakeFiles/alglib.dir/_deps/alglib-src/src/optimization.cpp.o"
+},
+{
+  "directory": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build",
+  "command": "/usr/bin/c++  -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src -std=c++20 -arch arm64 -Wall -Wextra -O3 -Wno-deprecated-declarations -Wno-deprecated-literal-operator -o CMakeFiles/alglib.dir/_deps/alglib-src/src/solvers.cpp.o -c /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src/solvers.cpp",
+  "file": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src/solvers.cpp",
+  "output": "CMakeFiles/alglib.dir/_deps/alglib-src/src/solvers.cpp.o"
+},
+{
+  "directory": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build",
+  "command": "/usr/bin/c++  -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src -std=c++20 -arch arm64 -Wall -Wextra -O3 -Wno-deprecated-declarations -Wno-deprecated-literal-operator -o CMakeFiles/alglib.dir/_deps/alglib-src/src/specialfunctions.cpp.o -c /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src/specialfunctions.cpp",
+  "file": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src/specialfunctions.cpp",
+  "output": "CMakeFiles/alglib.dir/_deps/alglib-src/src/specialfunctions.cpp.o"
+},
+{
+  "directory": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build",
+  "command": "/usr/bin/c++  -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src -std=c++20 -arch arm64 -Wall -Wextra -O3 -Wno-deprecated-declarations -Wno-deprecated-literal-operator -o CMakeFiles/alglib.dir/_deps/alglib-src/src/statistics.cpp.o -c /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src/statistics.cpp",
+  "file": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src/statistics.cpp",
+  "output": "CMakeFiles/alglib.dir/_deps/alglib-src/src/statistics.cpp.o"
+},
+{
+  "directory": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DSCN_DISABLE_FAST_FLOAT=0 -DSCN_DISABLE_REGEX=0 -DSCN_REGEX_BACKEND=0 -Dkiss_fft_scalar=double -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/include -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src -isystem /opt/homebrew/include/eigen3 -isystem /opt/homebrew/include -isystem /opt/homebrew/include/suitesparse -isystem /opt/homebrew/Cellar/open-mpi/5.0.10/include -isystem /opt/homebrew/include/vtk-9.7 -isystem /opt/homebrew/include/vtk-9.7/vtkfmt -isystem /opt/homebrew/include/vtk-9.7/vtkscn/include -isystem /opt/homebrew/include/vtk-9.7/vtkscn -isystem /opt/homebrew/include/vtk-9.7/token -isystem /opt/homebrew/include/vtk-9.7/vtkkissfft -std=c++20 -arch arm64 -Wall -Wextra -O3 -Wno-deprecated-declarations -Wno-deprecated-literal-operator -DTOML_HEADER_ONLY=0 -DTOML_SHARED_LIB=1 -o CMakeFiles/paul_trap_lib.dir/src/geometry/mesher.cpp.o -c /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/src/geometry/mesher.cpp",
+  "file": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/src/geometry/mesher.cpp",
+  "output": "CMakeFiles/paul_trap_lib.dir/src/geometry/mesher.cpp.o"
+},
+{
+  "directory": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DSCN_DISABLE_FAST_FLOAT=0 -DSCN_DISABLE_REGEX=0 -DSCN_REGEX_BACKEND=0 -Dkiss_fft_scalar=double -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/include -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src -isystem /opt/homebrew/include/eigen3 -isystem /opt/homebrew/include -isystem /opt/homebrew/include/suitesparse -isystem /opt/homebrew/Cellar/open-mpi/5.0.10/include -isystem /opt/homebrew/include/vtk-9.7 -isystem /opt/homebrew/include/vtk-9.7/vtkfmt -isystem /opt/homebrew/include/vtk-9.7/vtkscn/include -isystem /opt/homebrew/include/vtk-9.7/vtkscn -isystem /opt/homebrew/include/vtk-9.7/token -isystem /opt/homebrew/include/vtk-9.7/vtkkissfft -std=c++20 -arch arm64 -Wall -Wextra -O3 -Wno-deprecated-declarations -Wno-deprecated-literal-operator -DTOML_HEADER_ONLY=0 -DTOML_SHARED_LIB=1 -o CMakeFiles/paul_trap_lib.dir/src/physics/analytical.cpp.o -c /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/src/physics/analytical.cpp",
+  "file": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/src/physics/analytical.cpp",
+  "output": "CMakeFiles/paul_trap_lib.dir/src/physics/analytical.cpp.o"
+},
+{
+  "directory": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DSCN_DISABLE_FAST_FLOAT=0 -DSCN_DISABLE_REGEX=0 -DSCN_REGEX_BACKEND=0 -Dkiss_fft_scalar=double -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/include -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src -isystem /opt/homebrew/include/eigen3 -isystem /opt/homebrew/include -isystem /opt/homebrew/include/suitesparse -isystem /opt/homebrew/Cellar/open-mpi/5.0.10/include -isystem /opt/homebrew/include/vtk-9.7 -isystem /opt/homebrew/include/vtk-9.7/vtkfmt -isystem /opt/homebrew/include/vtk-9.7/vtkscn/include -isystem /opt/homebrew/include/vtk-9.7/vtkscn -isystem /opt/homebrew/include/vtk-9.7/token -isystem /opt/homebrew/include/vtk-9.7/vtkkissfft -std=c++20 -arch arm64 -Wall -Wextra -O3 -Wno-deprecated-declarations -Wno-deprecated-literal-operator -DTOML_HEADER_ONLY=0 -DTOML_SHARED_LIB=1 -o CMakeFiles/paul_trap_lib.dir/src/physics/fem_solver.cpp.o -c /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/src/physics/fem_solver.cpp",
+  "file": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/src/physics/fem_solver.cpp",
+  "output": "CMakeFiles/paul_trap_lib.dir/src/physics/fem_solver.cpp.o"
+},
+{
+  "directory": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DSCN_DISABLE_FAST_FLOAT=0 -DSCN_DISABLE_REGEX=0 -DSCN_REGEX_BACKEND=0 -Dkiss_fft_scalar=double -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/include -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src -isystem /opt/homebrew/include/eigen3 -isystem /opt/homebrew/include -isystem /opt/homebrew/include/suitesparse -isystem /opt/homebrew/Cellar/open-mpi/5.0.10/include -isystem /opt/homebrew/include/vtk-9.7 -isystem /opt/homebrew/include/vtk-9.7/vtkfmt -isystem /opt/homebrew/include/vtk-9.7/vtkscn/include -isystem /opt/homebrew/include/vtk-9.7/vtkscn -isystem /opt/homebrew/include/vtk-9.7/token -isystem /opt/homebrew/include/vtk-9.7/vtkkissfft -std=c++20 -arch arm64 -Wall -Wextra -O3 -Wno-deprecated-declarations -Wno-deprecated-literal-operator -DTOML_HEADER_ONLY=0 -DTOML_SHARED_LIB=1 -o CMakeFiles/paul_trap_lib.dir/src/interpolation/regular_grid.cpp.o -c /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/src/interpolation/regular_grid.cpp",
+  "file": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/src/interpolation/regular_grid.cpp",
+  "output": "CMakeFiles/paul_trap_lib.dir/src/interpolation/regular_grid.cpp.o"
+},
+{
+  "directory": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DSCN_DISABLE_FAST_FLOAT=0 -DSCN_DISABLE_REGEX=0 -DSCN_REGEX_BACKEND=0 -Dkiss_fft_scalar=double -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/include -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src -isystem /opt/homebrew/include/eigen3 -isystem /opt/homebrew/include -isystem /opt/homebrew/include/suitesparse -isystem /opt/homebrew/Cellar/open-mpi/5.0.10/include -isystem /opt/homebrew/include/vtk-9.7 -isystem /opt/homebrew/include/vtk-9.7/vtkfmt -isystem /opt/homebrew/include/vtk-9.7/vtkscn/include -isystem /opt/homebrew/include/vtk-9.7/vtkscn -isystem /opt/homebrew/include/vtk-9.7/token -isystem /opt/homebrew/include/vtk-9.7/vtkkissfft -std=c++20 -arch arm64 -Wall -Wextra -O3 -Wno-deprecated-declarations -Wno-deprecated-literal-operator -DTOML_HEADER_ONLY=0 -DTOML_SHARED_LIB=1 -o CMakeFiles/paul_trap_lib.dir/src/interpolation/rbf_interpolator.cpp.o -c /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/src/interpolation/rbf_interpolator.cpp",
+  "file": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/src/interpolation/rbf_interpolator.cpp",
+  "output": "CMakeFiles/paul_trap_lib.dir/src/interpolation/rbf_interpolator.cpp.o"
+},
+{
+  "directory": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DSCN_DISABLE_FAST_FLOAT=0 -DSCN_DISABLE_REGEX=0 -DSCN_REGEX_BACKEND=0 -Dkiss_fft_scalar=double -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/include -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src -isystem /opt/homebrew/include/eigen3 -isystem /opt/homebrew/include -isystem /opt/homebrew/include/suitesparse -isystem /opt/homebrew/Cellar/open-mpi/5.0.10/include -isystem /opt/homebrew/include/vtk-9.7 -isystem /opt/homebrew/include/vtk-9.7/vtkfmt -isystem /opt/homebrew/include/vtk-9.7/vtkscn/include -isystem /opt/homebrew/include/vtk-9.7/vtkscn -isystem /opt/homebrew/include/vtk-9.7/token -isystem /opt/homebrew/include/vtk-9.7/vtkkissfft -std=c++20 -arch arm64 -Wall -Wextra -O3 -Wno-deprecated-declarations -Wno-deprecated-literal-operator -DTOML_HEADER_ONLY=0 -DTOML_SHARED_LIB=1 -o CMakeFiles/paul_trap_lib.dir/src/validation/metrics.cpp.o -c /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/src/validation/metrics.cpp",
+  "file": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/src/validation/metrics.cpp",
+  "output": "CMakeFiles/paul_trap_lib.dir/src/validation/metrics.cpp.o"
+},
+{
+  "directory": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DSCN_DISABLE_FAST_FLOAT=0 -DSCN_DISABLE_REGEX=0 -DSCN_REGEX_BACKEND=0 -Dkiss_fft_scalar=double -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/include -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src -isystem /opt/homebrew/include/eigen3 -isystem /opt/homebrew/include -isystem /opt/homebrew/include/suitesparse -isystem /opt/homebrew/Cellar/open-mpi/5.0.10/include -isystem /opt/homebrew/include/vtk-9.7 -isystem /opt/homebrew/include/vtk-9.7/vtkfmt -isystem /opt/homebrew/include/vtk-9.7/vtkscn/include -isystem /opt/homebrew/include/vtk-9.7/vtkscn -isystem /opt/homebrew/include/vtk-9.7/token -isystem /opt/homebrew/include/vtk-9.7/vtkkissfft -std=c++20 -arch arm64 -Wall -Wextra -O3 -Wno-deprecated-declarations -Wno-deprecated-literal-operator -DTOML_HEADER_ONLY=0 -DTOML_SHARED_LIB=1 -o CMakeFiles/paul_trap_sim.dir/src/main.cpp.o -c /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/src/main.cpp",
+  "file": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/src/main.cpp",
+  "output": "CMakeFiles/paul_trap_sim.dir/src/main.cpp.o"
+},
+{
+  "directory": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DSCN_DISABLE_FAST_FLOAT=0 -DSCN_DISABLE_REGEX=0 -DSCN_REGEX_BACKEND=0 -Dkiss_fft_scalar=double -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/include -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src -isystem /opt/homebrew/include/eigen3 -isystem /opt/homebrew/include -isystem /opt/homebrew/include/suitesparse -isystem /opt/homebrew/Cellar/open-mpi/5.0.10/include -isystem /opt/homebrew/include/vtk-9.7 -isystem /opt/homebrew/include/vtk-9.7/vtkfmt -isystem /opt/homebrew/include/vtk-9.7/vtkscn/include -isystem /opt/homebrew/include/vtk-9.7/vtkscn -isystem /opt/homebrew/include/vtk-9.7/token -isystem /opt/homebrew/include/vtk-9.7/vtkkissfft -std=c++20 -arch arm64 -Wall -Wextra -O3 -Wno-deprecated-declarations -Wno-deprecated-literal-operator -DTOML_HEADER_ONLY=0 -DTOML_SHARED_LIB=1 -o CMakeFiles/test_config.dir/tests/test_config.cpp.o -c /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/tests/test_config.cpp",
+  "file": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/tests/test_config.cpp",
+  "output": "CMakeFiles/test_config.dir/tests/test_config.cpp.o"
+},
+{
+  "directory": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DSCN_DISABLE_FAST_FLOAT=0 -DSCN_DISABLE_REGEX=0 -DSCN_REGEX_BACKEND=0 -Dkiss_fft_scalar=double -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/include -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src -isystem /opt/homebrew/include/eigen3 -isystem /opt/homebrew/include -isystem /opt/homebrew/include/suitesparse -isystem /opt/homebrew/Cellar/open-mpi/5.0.10/include -isystem /opt/homebrew/include/vtk-9.7 -isystem /opt/homebrew/include/vtk-9.7/vtkfmt -isystem /opt/homebrew/include/vtk-9.7/vtkscn/include -isystem /opt/homebrew/include/vtk-9.7/vtkscn -isystem /opt/homebrew/include/vtk-9.7/token -isystem /opt/homebrew/include/vtk-9.7/vtkkissfft -std=c++20 -arch arm64 -Wall -Wextra -O3 -Wno-deprecated-declarations -Wno-deprecated-literal-operator -DTOML_HEADER_ONLY=0 -DTOML_SHARED_LIB=1 -o CMakeFiles/test_mesher.dir/tests/test_mesher.cpp.o -c /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/tests/test_mesher.cpp",
+  "file": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/tests/test_mesher.cpp",
+  "output": "CMakeFiles/test_mesher.dir/tests/test_mesher.cpp.o"
+},
+{
+  "directory": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DSCN_DISABLE_FAST_FLOAT=0 -DSCN_DISABLE_REGEX=0 -DSCN_REGEX_BACKEND=0 -Dkiss_fft_scalar=double -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/include -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src -isystem /opt/homebrew/include/eigen3 -isystem /opt/homebrew/include -isystem /opt/homebrew/include/suitesparse -isystem /opt/homebrew/Cellar/open-mpi/5.0.10/include -isystem /opt/homebrew/include/vtk-9.7 -isystem /opt/homebrew/include/vtk-9.7/vtkfmt -isystem /opt/homebrew/include/vtk-9.7/vtkscn/include -isystem /opt/homebrew/include/vtk-9.7/vtkscn -isystem /opt/homebrew/include/vtk-9.7/token -isystem /opt/homebrew/include/vtk-9.7/vtkkissfft -std=c++20 -arch arm64 -Wall -Wextra -O3 -Wno-deprecated-declarations -Wno-deprecated-literal-operator -DTOML_HEADER_ONLY=0 -DTOML_SHARED_LIB=1 -o CMakeFiles/test_analytical.dir/tests/test_analytical.cpp.o -c /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/tests/test_analytical.cpp",
+  "file": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/tests/test_analytical.cpp",
+  "output": "CMakeFiles/test_analytical.dir/tests/test_analytical.cpp.o"
+},
+{
+  "directory": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DSCN_DISABLE_FAST_FLOAT=0 -DSCN_DISABLE_REGEX=0 -DSCN_REGEX_BACKEND=0 -Dkiss_fft_scalar=double -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/include -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src -isystem /opt/homebrew/include/eigen3 -isystem /opt/homebrew/include -isystem /opt/homebrew/include/suitesparse -isystem /opt/homebrew/Cellar/open-mpi/5.0.10/include -isystem /opt/homebrew/include/vtk-9.7 -isystem /opt/homebrew/include/vtk-9.7/vtkfmt -isystem /opt/homebrew/include/vtk-9.7/vtkscn/include -isystem /opt/homebrew/include/vtk-9.7/vtkscn -isystem /opt/homebrew/include/vtk-9.7/token -isystem /opt/homebrew/include/vtk-9.7/vtkkissfft -std=c++20 -arch arm64 -Wall -Wextra -O3 -Wno-deprecated-declarations -Wno-deprecated-literal-operator -DTOML_HEADER_ONLY=0 -DTOML_SHARED_LIB=1 -o CMakeFiles/test_fem.dir/tests/test_fem.cpp.o -c /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/tests/test_fem.cpp",
+  "file": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/tests/test_fem.cpp",
+  "output": "CMakeFiles/test_fem.dir/tests/test_fem.cpp.o"
+},
+{
+  "directory": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DSCN_DISABLE_FAST_FLOAT=0 -DSCN_DISABLE_REGEX=0 -DSCN_REGEX_BACKEND=0 -Dkiss_fft_scalar=double -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/include -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src -isystem /opt/homebrew/include/eigen3 -isystem /opt/homebrew/include -isystem /opt/homebrew/include/suitesparse -isystem /opt/homebrew/Cellar/open-mpi/5.0.10/include -isystem /opt/homebrew/include/vtk-9.7 -isystem /opt/homebrew/include/vtk-9.7/vtkfmt -isystem /opt/homebrew/include/vtk-9.7/vtkscn/include -isystem /opt/homebrew/include/vtk-9.7/vtkscn -isystem /opt/homebrew/include/vtk-9.7/token -isystem /opt/homebrew/include/vtk-9.7/vtkkissfft -std=c++20 -arch arm64 -Wall -Wextra -O3 -Wno-deprecated-declarations -Wno-deprecated-literal-operator -DTOML_HEADER_ONLY=0 -DTOML_SHARED_LIB=1 -o CMakeFiles/test_interpolation.dir/tests/test_interpolation.cpp.o -c /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/tests/test_interpolation.cpp",
+  "file": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/tests/test_interpolation.cpp",
+  "output": "CMakeFiles/test_interpolation.dir/tests/test_interpolation.cpp.o"
+},
+{
+  "directory": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DSCN_DISABLE_FAST_FLOAT=0 -DSCN_DISABLE_REGEX=0 -DSCN_REGEX_BACKEND=0 -Dkiss_fft_scalar=double -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/include -I/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/_deps/alglib-src/src -isystem /opt/homebrew/include/eigen3 -isystem /opt/homebrew/include -isystem /opt/homebrew/include/suitesparse -isystem /opt/homebrew/Cellar/open-mpi/5.0.10/include -isystem /opt/homebrew/include/vtk-9.7 -isystem /opt/homebrew/include/vtk-9.7/vtkfmt -isystem /opt/homebrew/include/vtk-9.7/vtkscn/include -isystem /opt/homebrew/include/vtk-9.7/vtkscn -isystem /opt/homebrew/include/vtk-9.7/token -isystem /opt/homebrew/include/vtk-9.7/vtkkissfft -std=c++20 -arch arm64 -Wall -Wextra -O3 -Wno-deprecated-declarations -Wno-deprecated-literal-operator -DTOML_HEADER_ONLY=0 -DTOML_SHARED_LIB=1 -o CMakeFiles/test_validation.dir/tests/test_validation.cpp.o -c /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/tests/test_validation.cpp",
+  "file": "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/tests/test_validation.cpp",
+  "output": "CMakeFiles/test_validation.dir/tests/test_validation.cpp.o"
+}
+]
