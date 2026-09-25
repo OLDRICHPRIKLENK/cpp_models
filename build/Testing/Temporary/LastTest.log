@@ -1,10 +1,10 @@
-Start testing: Sep 22 18:13 CEST
+Start testing: Sep 25 14:56 CEST
 ----------------------------------------------------------
 1/7 Testing: test_config
 1/7 Test: test_config
 Command: "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/test_config"
 Directory: /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp
-"test_config" start time: Sep 22 18:13 CEST
+"test_config" start time: Sep 25 14:56 CEST
 Output:
 ----------------------------------------------------------
 [TEST] Loading config.toml...
@@ -16,10 +16,10 @@ Output:
 [PASS] Error handling verified.
 === ALL CONFIG TESTS PASSED ===
 <end of output>
-Test time =   0.21 sec
+Test time =   0.86 sec
 ----------------------------------------------------------
 Test Passed.
-"test_config" end time: Sep 22 18:13 CEST
+"test_config" end time: Sep 25 14:56 CEST
 "test_config" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -27,7 +27,7 @@ Test Passed.
 2/7 Test: test_mesher
 Command: "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/test_mesher"
 Directory: /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp
-"test_mesher" start time: Sep 22 18:13 CEST
+"test_mesher" start time: Sep 25 14:56 CEST
 Output:
 ----------------------------------------------------------
 [TEST] Running Mesher with config.toml...
@@ -43,10 +43,10 @@ Output:
 [PASS] Mesher parameter validation verified.
 === ALL MESHER TESTS PASSED ===
 <end of output>
-Test time =   0.16 sec
+Test time =   0.72 sec
 ----------------------------------------------------------
 Test Passed.
-"test_mesher" end time: Sep 22 18:13 CEST
+"test_mesher" end time: Sep 25 14:56 CEST
 "test_mesher" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -54,7 +54,7 @@ Test Passed.
 3/7 Test: test_analytical
 Command: "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/test_analytical"
 Directory: /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp
-"test_analytical" start time: Sep 22 18:13 CEST
+"test_analytical" start time: Sep 25 14:56 CEST
 Output:
 ----------------------------------------------------------
 [TEST] Verifying Laplace condition div(grad(V)) == 0...
@@ -65,10 +65,10 @@ Output:
 [PASS] Batch evaluations match single-point evaluations exactly.
 === ALL ANALYTICAL TESTS PASSED ===
 <end of output>
-Test time =   0.11 sec
+Test time =   0.47 sec
 ----------------------------------------------------------
 Test Passed.
-"test_analytical" end time: Sep 22 18:13 CEST
+"test_analytical" end time: Sep 25 14:56 CEST
 "test_analytical" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -76,7 +76,7 @@ Test Passed.
 4/7 Test: test_fem
 Command: "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/test_fem"
 Directory: /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp
-"test_fem" start time: Sep 22 18:13 CEST
+"test_fem" start time: Sep 25 14:56 CEST
 Output:
 ----------------------------------------------------------
 [TEST] Setting up mesh and running FEM Laplace solver...
@@ -94,10 +94,10 @@ Output:
 [PASS] VTK file successfully generated.
 === ALL FEM SOLVER TESTS PASSED ===
 <end of output>
-Test time =   0.18 sec
+Test time =   0.55 sec
 ----------------------------------------------------------
 Test Passed.
-"test_fem" end time: Sep 22 18:13 CEST
+"test_fem" end time: Sep 25 14:56 CEST
 "test_fem" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -105,7 +105,7 @@ Test Passed.
 5/7 Test: test_bem
 Command: "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/test_bem"
 Directory: /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp
-"test_bem" start time: Sep 22 18:13 CEST
+"test_bem" start time: Sep 25 14:56 CEST
 Output:
 ----------------------------------------------------------
 [TEST] Setting up surface mesh and running BEM Laplace solver...
@@ -126,10 +126,10 @@ Output:
 [PASS] VTK surface file exported successfully.
 === ALL BEM TESTS PASSED ===
 <end of output>
-Test time =   0.16 sec
+Test time =   0.49 sec
 ----------------------------------------------------------
 Test Passed.
-"test_bem" end time: Sep 22 18:13 CEST
+"test_bem" end time: Sep 25 14:56 CEST
 "test_bem" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -137,24 +137,27 @@ Test Passed.
 6/7 Test: test_interpolation
 Command: "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/test_interpolation"
 Directory: /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp
-"test_interpolation" start time: Sep 22 18:13 CEST
+"test_interpolation" start time: Sep 25 14:56 CEST
 Output:
 ----------------------------------------------------------
 [TEST] Testing RegularGrid...
 [PASS] RegularGrid creation and coordinates verified.
-[TEST] Testing PolynomialInterpolator fitting known quadratic field...
-[PASS] PolynomialInterpolator correctly fits and computes electric fields.
-[TEST] Testing PolynomialInterpolator fitting degree 4 polynomial...
-[PASS] PolynomialInterpolator degree 4 fitting, derivatives, and degree fallback verified.
+[TEST] Testing PolynomialInterpolator fitting known quadratic harmonic field...
+[PolynomialInterpolator] Saved equation report to output/reports/test_poly_report.txt
+[PASS] PolynomialInterpolator degree 2 (9 harmonic terms) correctly fits, satisfies Laplace, and computes electric fields.
+[TEST] Testing PolynomialInterpolator fitting degree 4 harmonic polynomial...
+[PASS] PolynomialInterpolator degree 4 fitting (25 harmonic terms), exact Laplace vanishing, and degree fallback verified.
+[TEST] Testing solid harmonic term counts and space charge vanishing across all degrees...
+[PASS] Solid harmonic term counts and space charge vanishing verified across degrees 1 to 4.
 [TEST] Testing RbfInterpolator with ALGLIB and nanoflann...
 [RbfInterpolator] Successfully fitted RBF model with 64 points (r_base = 0.00125, smoothing = 1e-05, iterations = 67)
 [PASS] RbfInterpolator successfully evaluated and tested.
 === ALL INTERPOLATION TESTS PASSED ===
 <end of output>
-Test time =   0.11 sec
+Test time =   0.55 sec
 ----------------------------------------------------------
 Test Passed.
-"test_interpolation" end time: Sep 22 18:13 CEST
+"test_interpolation" end time: Sep 25 14:56 CEST
 "test_interpolation" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -162,7 +165,7 @@ Test Passed.
 7/7 Test: test_validation
 Command: "/Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp/build/test_validation"
 Directory: /Users/oldrichpriklenk/LocalDocuments/Univerzita/Physics/ion_trap_cpp
-"test_validation" start time: Sep 22 18:13 CEST
+"test_validation" start time: Sep 25 14:56 CEST
 Output:
 ----------------------------------------------------------
 [TEST] Testing FieldValidator error norms calculation...
@@ -173,11 +176,11 @@ Output:
 [PASS] Standalone VTK export verified.
 === ALL VALIDATION TESTS PASSED ===
 <end of output>
-Test time =   0.11 sec
+Test time =   0.53 sec
 ----------------------------------------------------------
 Test Passed.
-"test_validation" end time: Sep 22 18:13 CEST
+"test_validation" end time: Sep 25 14:56 CEST
 "test_validation" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Sep 22 18:13 CEST
+End testing: Sep 25 14:56 CEST

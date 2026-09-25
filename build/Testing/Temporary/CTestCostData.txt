@@ -1,8 +1,8 @@
-test_config 11 0.0189671
-test_mesher 11 0.0146222
-test_analytical 10 0.0107499
-test_fem 10 0.0175425
-test_interpolation 11 0.0101851
-test_validation 10 0.0112038
-test_bem 3 0.053833
+test_config 15 0.0576507
+test_mesher 15 0.0477945
+test_analytical 14 0.0339031
+test_fem 14 0.0389623
+test_interpolation 14 0.0396291
+test_validation 14 0.0377688
+test_bem 7 0.0702967
 ---
