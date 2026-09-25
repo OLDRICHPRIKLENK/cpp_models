@@ -80,6 +80,10 @@ public:
     [[nodiscard]] Eigen::Vector3d electric_field(double x, double y, double z) const noexcept;
     [[nodiscard]] Eigen::Vector3d electric_field(const Eigen::Vector3d& pos) const noexcept;
 
+    // Evaluate Laplacian laplacian(V) = div(grad(V))
+    [[nodiscard]] double laplacian(double x, double y, double z) const noexcept;
+    [[nodiscard]] double laplacian(const Eigen::Vector3d& pos) const noexcept;
+
     // Evaluate on entire regular grid
     void interpolate_grid(RegularGrid& grid) const;
 
@@ -96,7 +100,7 @@ public:
 private:
     int degree_{2};
     bool is_fitted_{false};
-    Eigen::VectorXd coefficients_; // [c0, c_x, c_y, c_z, c_xx, c_yy, c_zz, c_xy, c_yz, c_zx]
+    Eigen::VectorXd coefficients_; // Solid harmonic coefficients: (degree + 1)^2 terms
 };
 
 } // namespace paultrap::interpolation

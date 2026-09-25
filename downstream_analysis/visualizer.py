@@ -309,7 +309,7 @@ def plot_combined_dashboard(
 
     # Panel (0, 0): FEM Potential
     plot_fem_potential(fem_data, ax=axs[0, 0], show_colorbar=True)
-    axs[0, 0].set_title(f"(a) FEM Potential: Full Domain (z = {fem_data.z_val*1e3:.2f} mm)", fontweight="bold")
+    axs[0, 0].set_title(f"(a) Physics Engine Potential: Full Domain (z = {fem_data.z_val*1e3:.2f} mm)", fontweight="bold")
 
     # Panel (0, 1): Grid Potential
     plot_grid_potential(grid_data, ax=axs[0, 1], show_colorbar=True)

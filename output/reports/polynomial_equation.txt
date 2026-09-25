@@ -1,44 +1,51 @@
 =======================================================
-       3D PAUL TRAP FIELD SOLVER: POLYNOMIAL FIT       
+       3D PAUL TRAP FIELD SOLVER: HARMONIC FIT         
 =======================================================
 
-V(x, y, z) = 1.389231e+01
-  + (1.237039e-01) * x
-  + (-2.378478e-01) * y
-  + (1.212021e-01) * z
-  + (4.041940e+06) * x^2
-  + (-5.436365e+06) * y^2
-  + (1.410837e+06) * z^2
-  + (-8.848423e+02) * x*y
-  + (3.065051e+01) * y*z
-  + (2.040901e+01) * z*x
-  + (-3.724697e+03) * x^3
-  + (-1.039551e+03) * y^3
-  + (-5.281799e+03) * z^3
-  + (-3.283290e+04) * x^2*y
-  + (2.078199e+04) * x*y^2
-  + (-1.018361e+04) * x^2*z
-  + (-1.488473e+04) * x*z^2
-  + (3.843257e+04) * y^2*z
-  + (2.465374e+04) * y*z^2
+V(x, y, z) = 1.390592e+01
+  + (1.186264e-01) * x
+  + (-2.487189e-01) * y
+  + (1.331372e-01) * z
+  + (-1.375516e+03) * x*y
+  + (3.303691e+01) * y*z
+  + (2.078653e+01) * z*x
+  + (4.937377e+06) * x^2 - y^2
+  + (7.126728e+05) * 2*z^2 - x^2 - y^2
+  + (-8.550738e+03) * 3*x^2*y - y^3
+  + (-5.845312e+03) * x^3 - 3*x*y^2
+  + (-2.430809e+04) * z*(x^2 - y^2)
   + (-3.713919e+05) * x*y*z
-  + (6.990743e+10) * x^4
-  + (-6.589023e+10) * y^4
-  + (1.649429e+10) * z^4
-  + (-1.276003e+08) * x^3*y
-  + (-8.782968e+07) * x*y^3
-  + (1.368048e+06) * x^3*z
-  + (-3.481676e+06) * x*z^3
-  + (1.566743e+06) * y^3*z
-  + (-3.062224e+06) * y*z^3
-  + (4.275827e+09) * x^2*y^2
-  + (6.182140e+10) * y^2*z^2
-  + (-1.334353e+11) * z^2*x^2
-  + (7.134674e+06) * x^2*y*z
-  + (6.759824e+06) * x*y^2*z
-  + (1.017805e+08) * x*y*z^2
+  + (-3.626158e+03) * x*(4*z^2 - x^2 - y^2)
+  + (6.366885e+03) * y*(4*z^2 - x^2 - y^2)
+  + (-4.410342e+03) * z*(2*z^2 - 3*x^2 - 3*y^2)
+  + (4.516018e+08) * x^4 - 6*x^2*y^2 + y^4
+  + (-4.971327e+06) * 4*x^3*y - 4*x*y^3
+  + (-1.360466e+06) * z*(x^3 - 3*x*y^2)
+  + (1.471137e+06) * z*(3*x^2*y - y^3)
+  + (-1.725822e+10) * (x^2 - y^2)*(6*z^2 - x^2 - y^2)
+  + (2.062786e+07) * x*y*(6*z^2 - x^2 - y^2)
+  + (-8.871700e+05) * x*z*(4*z^2 - 3*x^2 - 3*y^2)
+  + (-8.714435e+05) * y*z*(4*z^2 - 3*x^2 - 3*y^2)
+  + (1.456251e+09) * 8*z^4 - 24*z^2*(x^2 + y^2) + 3*(x^2 + y^2)^2
 
 --- Analytical Multipole Mode Equivalents ---
-Radial Quadrupole (c_xx - c_yy)/2: 4.73915e+06 V/m^2
-Axial Quadrupole c_zz:             1.41084e+06 V/m^2
-Laplacian residual (2*c_xx + 2*c_yy + 2*c_zz): 32825.1 V/m^2
+Monopole Offset C0:              13.9059 V
+Dipole X (c1):                   0.118626 V/m
+Dipole Y (c2):                   -0.248719 V/m
+Dipole Z (c3):                   0.133137 V/m
+Radial Quadrupole (x^2 - y^2):   4.93738e+06 V/m^2
+Axial Quadrupole (2z^2-x^2-y^2): 712673 V/m^2
+Cross Quadrupole XY (xy):        -1375.52 V/m^2
+Cross Quadrupole YZ (yz):        33.0369 V/m^2
+Cross Quadrupole ZX (zx):        20.7865 V/m^2
+Octupole Mode Count:             7 terms (H9..H15)
+Dodecapole Mode Count:           9 terms (H16..H24)
+
+--- Laplace Equation & Artificial Space Charge Verification ---
+Evaluation Point:                (0.0005, -0.0004, 0.0006) m
+Analytical Laplacian (d^2V):     1.18991e-12 V/m^2
+Numerical FD Laplacian:          0.0851644 V/m^2 (within O(h^2) FD stencil truncation)
+Artificial Space Charge Density: -1.05357e-23 C/m^3 (exact by construction)
+Numerical Space Charge Density:  -7.54062e-13 C/m^3
+Numerical Div(E) Residual:       -0.0851644 V/m^2
+Space Charge Check Status:       PASSED (Identically zero artificial space charge in vacuum)

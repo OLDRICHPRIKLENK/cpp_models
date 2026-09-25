@@ -113,10 +113,10 @@ The objective is to compute, interpolate, validate, and visualize 3D electrostat
   - Exports 2D surface mesh with potentials and charge densities to `output/vtk/bem_solution.vtu`.
   - Verification: `tests/test_bem.cpp` passed 100% (partition of unity, maximum principle, geometric symmetry, VTK export).
 
-- [x] **Spatial Interpolation Module:**
-  - `include/interpolation/regular_grid.hpp`, `src/interpolation/regular_grid.cpp`: 3D Cartesian tensor grid and multivariate polynomial least-squares fit (supporting degrees 1 through 4: 4 to 35 terms) with analytical $\vec{E} = -\nabla V$. Formats polynomial equation and logs to terminal and disk. Safe fallback to degree 2 for out-of-range degrees.
+- [x] **Spatial Interpolation Module (Solid Harmonic Enforcement $\nabla^2 V \equiv 0$):**
+  - `include/interpolation/regular_grid.hpp`, `src/interpolation/regular_grid.cpp`: 3D Cartesian tensor grid and real solid harmonic polynomial least-squares fit (exact degrees of freedom: $(L+1)^2$, supporting degrees 1 through 4: 4, 9, 16, 25 terms) with analytical $\vec{E} = -\nabla V$ and exact Laplacian $\nabla^2 V = 0$. Guarantees zero artificial space charge in vacuum by construction. Formats harmonic equation, multipole modes, and logs equation report with explicit space-charge verification. Safe fallback to degree 2 for out-of-range degrees.
   - `include/interpolation/rbf_interpolator.hpp`, `src/interpolation/rbf_interpolator.cpp`: Multilayer RBF model powered by ALGLIB, with KD-tree nearest-neighbor spatial queries via `nanoflann`.
-  - Verification: `tests/test_interpolation.cpp` passed 100% (quadratic & degree 4 tests).
+  - Verification: `tests/test_interpolation.cpp` passed 100% (harmonic degree 2, degree 4, term count, and space-charge vanishing tests).
 
 - [x] **Validation & Error Metrics Module:**
   - `include/validation/metrics.hpp`, `src/validation/metrics.cpp`: Calculates relative $L_2$, absolute $L_2$ (RMS), max ($L_\infty$), and mean absolute error.
@@ -135,19 +135,36 @@ From execution of `paul_trap_sim` with standard parameters ($r_0 = 5\,\text{mm},
 - FEM 6-basis Laplace solve: **0.063 seconds** (3,875 H1 DOFs, CG convergence with relative tolerance $10^{-12}$).
 - Full end-to-end pipeline: **1.89 seconds** (including mesh, 6 solves, polynomial fit, RBF fit, analytical eval, metrics, and 4 VTK writes).
 
-### Fitted Polynomial Field Equation:
+### Fitted Harmonic Polynomial Field Equation (Degree 4, 25 terms, exact $\nabla^2 V \equiv 0$):
 ```text
-V(x, y, z) = 1.769833e+01
-  + (-3.231938e+01) * x
-  + (4.002324e+00) * y
-  + (8.429810e+00) * z
-  + (3.284198e+06) * x^2
-  + (-5.402174e+06) * y^2
-  + (1.434637e+06) * z^2
-  + (-1.709430e+05) * x*y
-  + (-1.323551e+04) * y*z
-  + (-3.741394e+03) * z*x
+V(x, y, z) = 1.390592e+01
+  + (1.186264e-01) * x
+  + (-2.487189e-01) * y
+  + (1.331372e-01) * z
+  + (-1.375516e+03) * x*y
+  + (3.303691e+01) * y*z
+  + (2.078653e+01) * z*x
+  + (4.937377e+06) * x^2 - y^2
+  + (7.126728e+05) * 2*z^2 - x^2 - y^2
+  + (-8.550738e+03) * 3*x^2*y - y^3
+  + (-5.845312e+03) * x^3 - 3*x*y^2
+  + (-2.430809e+04) * z*(x^2 - y^2)
+  + (-3.713919e+05) * x*y*z
+  + (-3.626158e+03) * x*(4*z^2 - x^2 - y^2)
+  + (6.366885e+03) * y*(4*z^2 - x^2 - y^2)
+  + (-4.410342e+03) * z*(2*z^2 - 3*x^2 - 3*y^2)
+  + (4.516018e+08) * x^4 - 6*x^2*y^2 + y^4
+  + (-4.971327e+06) * 4*x^3*y - 4*x*y^3
+  + (-1.360466e+06) * z*(x^3 - 3*x*y^2)
+  + (1.471137e+06) * z*(3*x^2*y - y^3)
+  + (-1.725822e+10) * (x^2 - y^2)*(6*z^2 - x^2 - y^2)
+  + (2.062786e+07) * x*y*(6*z^2 - x^2 - y^2)
+  + (-8.871700e+05) * x*z*(4*z^2 - 3*x^2 - 3*y^2)
+  + (-8.714435e+05) * y*z*(4*z^2 - 3*x^2 - 3*y^2)
+  + (1.456251e+09) * 8*z^4 - 24*z^2*(x^2 + y^2) + 3*(x^2 + y^2)^2
 ```
+- **Laplacian Residual:** $0.000000\,\text{V/m}^2$ (identically zero by construction up to machine epsilon)
+- **Artificial Space Charge Density ($\rho = -\epsilon_0 \nabla^2 V$):** $0.0\,\text{C/m}^3$ (no spurious charge generated in vacuum)
 
 ### Validation Metrics (Grid: $21 \times 21 \times 21 = 9,261$ points):
 - **Relative $L_2$ Error:** $5.479871 \times 10^{-2}$ (5.48%)
