@@ -572,5 +572,4 @@ void PolynomialInterpolator::save_equation_report(const std::string& filepath) c
 
     std::cout << "[PolynomialInterpolator] Saved equation report to " << filepath << std::endl;
 }
-
 } // namespace paultrap::interpolation

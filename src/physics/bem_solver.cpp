@@ -10,7 +10,6 @@
 #include <vtkIntArray.h>
 #include <vtkCellData.h>
 #include <vtkTriangle.h>
-
 #include <cmath>
 #include <array>
 #include <vector>

@@ -304,6 +304,7 @@ def plot_combined_dashboard(
     3. Electric Field Magnitude & Field Lines (Streamlines / Quiver)
     4. 1D Line Cut Profiles (Potential curvature along x and y)
     """
+    
     setup_matplotlib_style()
     fig, axs = plt.subplots(2, 2, figsize=(14, 12))
 
